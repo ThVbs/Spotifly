@@ -1,0 +1,211 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+}
+.esquerda{
+    height: 100vh;
+    width: 20vw;
+    border-right: 1px solid white;
+}
+.direita{
+    height: 100vh;
+    width: 100vw;
+   
+}
+.inicio{
+    height: 30%;
+    width: 100%;
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
+    display: flex;
+    flex-flow: row wrap;
+}
+h1{
+    width: 100%;
+    color: rgb(97, 12, 19);
+}
+
+button{
+    height: 20%;
+    width: 20%;
+    border-radius: 50px;
+    background-color: rgb(97, 12, 19);
+    border: none;
+    cursor: pointer;
+}
+.home{
+    height: 70%;
+    width: 70%;
+    text-decoration: none;
+    
+}
+h2{
+    margin-right: 70px;
+    margin-left: 10px;
+    color: white;
+    font-family: "Playfair Display", serif;
+}
+a{
+    text-decoration: none;
+}
+.playlist{
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+    width: 100%;
+}
+.titulo{
+    padding-left: 10px;
+    padding-top: 10px;
+}
+.titulo-principal{
+    padding-left: 40px;
+}
+.pastas{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.mensagem{
+    width: 80%;
+    height: 20vh;
+    background-color: rgb(52, 51, 51);
+    margin-top: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+.criar{
+    background-color:  rgb(97, 12, 19);
+    width: 120px;
+    color: white;
+    height: 35px;
+    font-family: "Playfair Display", serif;
+}
+.mensagem2{
+    font-size: large;
+    color: white;
+    text-align: center;
+    font-family: "Playfair Display", serif;
+}
+.barra-pesquisa{
+    width: 100%;
+    height: 13vh;
+    border-bottom: 1px solid white;
+    display: flex;
+    flex-direction: row;
+    
+}
+.input{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+input{
+    width: 80%;
+    height: 40%;
+}
+.botoes{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+
+}
+.botao{
+    margin-left: 2%;
+    height: 40px; 
+    color: white;
+
+}
+.botao2{
+    text-decoration: none;
+    color: white;
+    font-family: "Playfair Display", serif;
+}
+.musicas{
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    
+}
+.top-musicas{
+  
+    height: 60%;
+}
+.titulo-musica{
+    height: 15%;
+    text-align: center;
+    
+}
+.mais-ouvidas{
+   
+    height: 84%;
+    display: flex;
+    flex-direction: row;
+}
+.song{
+    height: 100%;
+    width: 25%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.capa{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+}
+h3{
+    color: white;
+    background-color: rgb(76, 76, 76);
+    margin-top: 10px;
+    width: 160px;
+    text-align: center;
+    border-radius: 5px;
+}
+.top-artistas{
+   
+    height: 100%;
+}
+.titulo-artistas{
+    height: 15%;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 30px;
+    
+}
+.artistas-favoritos{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+.artista{
+    height: 80%;
+    width: 25%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.foto{
+    width: 150px;
+    height: 150px;
+}
