@@ -1,0 +1,62 @@
+*{
+    background-color: black;
+}
+
+.artista{
+    border-radius: 5px;
+    background-color:#5A74C3;
+    height: 250px;
+    color: white;
+    display: flex;
+}
+
+.artista h1{
+    background-color:  transparent;
+    margin-top: 100px;
+    font-size: 75px;
+    margin-left: -45px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.artista h4{
+    background-color: transparent;
+    margin-top: 50px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+#imagem{
+    border-radius: 5px;
+    height: 200px;
+    margin: 25px;
+}
+
+#imgArtista{
+    border-radius: 50%;
+    height: 30px;
+    margin-top: 200px;
+    margin-left: -130px;
+}
+
+#nomeArtista{
+    margin-top: 205px;
+    margin-left: 20px;
+}
+
+#play{
+    border-radius: 50px;
+    background-color:#610c13;
+    color: white;
+    width: 75px;
+    height: 25px;
+    margin-top: 10px;
+    border: none    ;
+}
+
+i{
+    background-color: transparent;
+}
+
+p{
+    color: white;
+}
