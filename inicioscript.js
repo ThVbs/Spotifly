@@ -63,8 +63,8 @@ function oi(){
 </div>
 <div class="musica3">
 <p id='num3'>3</p>
-<h4 id="nomeMusica3">Isso é Sério</h4>
-<p id="artista3">Matuê, Brandão85</p>
+<h4 id="nomeMusica3" onclick="issoEserio()">Isso é Sério</h4>
+<p id="artista3" onclick="issoEserio()">Matuê, Brandão85</p>
 </div>
 <div class="musica4">
 <p id='num4'>4</p>
@@ -187,5 +187,9 @@ function addMusica(){
     }
 }
 
+function issoEserio(){
+    window.location.href = "musica.html"
+}
+    
 
 

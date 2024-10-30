@@ -50,3 +50,12 @@ body{
 .modals{
     margin-bottom: 1px;
 }
+.voltar{
+    background-color: rgb(97, 12, 19);
+    border-radius: 50px;
+    width: 50px;
+    height: auto auto;
+    margin-left: 40px;
+    margin-top: 30px;
+    
+}
