@@ -21,18 +21,18 @@
                 <button><img class="home" src="imagens/icons8-botão-home-50.png"></button> <a href="">
                     <h2>Início</h2>
                 </a>
-                <button><img class="home" src="imagens/icons8-botão-home-50.png"></button> <a href="">
-                    <h2>Explorar</h2>
+                <button  onclick="explorar()"><img class="home" src="imagens/explorar.png"></button>
+                    <h2 onclick="explorar()" class="explorar2">Explorar</h2>
                 </a>
             </div>
             <div class="playlist">
                 <div class="titulo">
                     <h1>Playlists</h1>
                 </div>
-                <div class="pastas">
+                <div id="pastas" class="pastas">
                     <div class="mensagem">
                         <h3 class="mensagem2">Crie sua primeira playlist</h3><br>
-                        <button class="criar">CRIAR</button>
+                        <button id="criar" class="criar">CRIAR</button>
                     </div>
                 </div>
             </div>
@@ -42,12 +42,12 @@
                 <div class="input">
                     <input type="text" placeholder="Artistas, músicas...">
                 </div>
-                <div class="botoes">
+                <div class="botoes_">
                     <button class="botao"><a class="botao2" href="cadastro.html">Cadastrar</a></button>
                     <button class="botao"><a class="botao2" href="login.html">Login</a></button>
                 </div>
             </div>
-            <div class="musicas">
+            <div class="musicas_" id="musicas_">
               <div class="top-musicas">
                 <div class="titulo-musica"><h1>Mais Ouvidas</h1></div>
                 <div class="mais-ouvidas">
@@ -58,12 +58,14 @@
                 </div>
               </div>
               <div class="top-artistas">
-                <div class="titulo-artistas"><h1>Artistas Favoritos</h1></div>
+                <div class="titulo-artistas">
+                    <h1>Artistas Favoritos</h1>
+                </div>
                 <div class="artistas-favoritos">
-                    <div class="artista"><img class="foto" src="imagens/ab6761610000e5eb654dc6b69f86aeb73527fc07.jfif" alt=""><h3>Matue</h3></div>
-                    <div class="artista"><img class="foto" src="imagens/ab6761610000e5ebdc3804a7a276c52541a7e7bb.jfif" alt=""><h3>Hariel</h3></div>
-                    <div class="artista"><img class="foto" src="imagens/bob.jfif" alt=""><h3>Bob Marley</h3></div>
-                    <div class="artista"><img class="foto" src="imagens/chorao.jfif" alt=""><h3>Charlie Brown Jr</h3></div>
+                    <div class="artista-escolha"><img class="foto" src="imagens/ab6761610000e5eb654dc6b69f86aeb73527fc07.jfif" alt=""><h3>Matue</h3></div>
+                    <div class="artista-escolha"><img class="foto" src="imagens/ab6761610000e5ebdc3804a7a276c52541a7e7bb.jfif" alt=""><h3>Hariel</h3></div>
+                    <div class="artista-escolha"><img class="foto" src="imagens/bob.jfif" alt=""><h3>Bob Marley</h3></div>
+                    <div class="artista-escolha"><img class="foto" src="imagens/chorao.jfif" alt=""><h3>Charlie Brown Jr</h3></div>
                 </div>
               </div>
               
@@ -71,7 +73,7 @@
             </div>
         </div>
     </div>
-
 </body>
+<script src="inicioscript.js"></script>
 
 </html>
