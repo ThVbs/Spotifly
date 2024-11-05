@@ -190,6 +190,118 @@ function addMusica(){
 function issoEserio(){
     window.location.href = "musica.html"
 }
-    
+async function submitForm() {
+    const usr = document.getElementById('usr').value;
+    const email = document.getElementById('email').value;
+    const senha = document.getElementById('senha').value;
+
+    try {
+        const response = await fetch('http://localhost:3000/dados', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ usr, email, senha })
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Erro ${response.status}: ${errorText}`);
+        }
+
+        const data = await response.json();
+        alert('Cadastro concluído!'); 
+
+       
+        setTimeout(() => {
+            window.location.href = 'login.html'; 
+        }, 1000);
+
+    } catch (error) {
+        console.error('Erro na requisição:', error);
+        alert('Erro ao cadastrar usuário: ' + error.message);
+    }
+}
+async function mostrarMusicaAleatoria() {
+    try {
+        const response = await fetch('http://localhost:3000/musica-aleatoria');
+        const data = await response.json();
+
+        if (data.error) {
+            console.error(data.error);
+            return;
+        }
+
+        const musicasDiv = document.getElementById("musicas_");
+
+        // Limpa o conteúdo existente
+        musicasDiv.innerHTML = '';
+
+        // Cria e adiciona a imagem
+        const img = document.createElement("img");
+        img.className = 'capa_aleatoria'
+        img.src = data.imagem_url;
+        img.alt = data.titulo;
+        img.style.display = 'block';
+        img.style.margin = '0 auto';
+
+        // Cria e adiciona o título
+        const titulo = document.createElement("h3");
+        titulo.className = "titulo_aleatorio"
+        titulo.textContent = data.titulo;
+        titulo.style.textAlign = 'center';
+        
+        const artistas = document.createElement("h5")
+        artistas.className = "artistas_aleatorio"
+        artistas.textContent = data.artista
+        
+
+        musicasDiv.appendChild(img);
+        musicasDiv.appendChild(titulo);
+    } catch (error) {
+        console.error("Erro ao buscar música aleatória:", error);
+    }
+}
+
+function proibir(){
+
+}
+function toggleDropdown() {
+    var dropdown = document.getElementById("dropdown-content");
+    dropdown.classList.toggle("show");
+}
 
 
+window.onclick = function(event) {
+    if (!event.target.matches('.foto_usuario')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+}
+document.addEventListener("DOMContentLoaded", function() {
+    const modal = document.getElementById("modalMensagens");
+    const mensagemEl = document.getElementById("mensagem");
+    const mensagens = [
+        "Bem-vindo ao Spotifly!",
+        "Explore músicas e playlists.",
+        "Curta suas músicas favoritas.",
+        "Descubra novos artistas todos os dias."
+    ];
+    let indiceMensagem = 0;
+
+    // Função para mostrar a mensagem atual
+    function mostrarMensagem() {
+        mensagemEl.innerHTML = mensagens[indiceMensagem];
+        indiceMensagem = (indiceMensagem + 1) % mensagens.length;
+    }
+    setInterval(mostrarMensagem, 10000);
+});
+
+window.onload = function() {
+    mostrarMensagem();
+};

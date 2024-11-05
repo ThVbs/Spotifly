@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body onload="mostrarMensagem()">
     <div class="container">
         <div class="esquerda">
             <div class="inicio">
@@ -21,8 +21,8 @@
                 <button><img class="home" src="imagens/icons8-botão-home-50.png"></button> <a href="">
                     <h2>Início</h2>
                 </a>
-                <button  onclick="explorar()"><img class="home" src="imagens/explorar.png"></button>
-                    <h2 onclick="explorar()" class="explorar2">Explorar</h2>
+                <button  onclick="proibir()"><img class="home" src="imagens/explorar.png"></button>
+                    <h2 onclick="proibir()" class="explorar2">Explorar</h2>
                 </a>
             </div>
             <div class="playlist">
@@ -31,8 +31,7 @@
                 </div>
                 <div id="pastas" class="pastas">
                     <div class="mensagem">
-                        <h3 class="mensagem2">Crie sua primeira playlist</h3><br>
-                        <button id="criar" class="criar">CRIAR</button>
+                        <h3 class="mensagem2">Crie sua conta para fazer sua primeira playlist</h3><br>
                     </div>
                 </div>
             </div>
@@ -47,32 +46,17 @@
                     <button class="botao"><a class="botao2" href="login.html">Login</a></button>
                 </div>
             </div>
-            <div class="musicas_" id="musicas_">
-              <div class="top-musicas">
-                <div class="titulo-musica"><h1>Mais Ouvidas</h1></div>
-                <div class="mais-ouvidas">
-                    <div class="song"><img class="capa" src="imagens/ab67616d0000b27363ecdc2fc549275b51fbb9a7.jfif" alt=""><h3>Isso é Sério</h3></div>
-                    <div class="song"><img class="capa" src="imagens/ab67616d0000b27363ecdc2fc549275b51fbb9a7.jfif" alt=""><h3>Castlevania</h3></div>
-                    <div class="song"><img class="capa" src="imagens/ab67616d0000b27363ecdc2fc549275b51fbb9a7.jfif" alt=""><h3>4tal</h3></div>
-                    <div class="song"><img class="capa" src="imagens/ab67616d0000b27363ecdc2fc549275b51fbb9a7.jfif" alt=""><h3>333</h3></div>
+                <div class="musicas_" id="musicas_">
+                    <div id="modalMensagens" class="modal">
+                        <div class="modal-conteudo">
+                            <h2 id="mensagem"></h2>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="top-artistas">
-                <div class="titulo-artistas">
-                    <h1>Artistas Favoritos</h1>
-                </div>
-                <div class="artistas-favoritos">
-                    <div class="artista-escolha"><img class="foto" src="imagens/ab6761610000e5eb654dc6b69f86aeb73527fc07.jfif" alt=""><h3>Matue</h3></div>
-                    <div class="artista-escolha"><img class="foto" src="imagens/ab6761610000e5ebdc3804a7a276c52541a7e7bb.jfif" alt=""><h3>Hariel</h3></div>
-                    <div class="artista-escolha"><img class="foto" src="imagens/bob.jfif" alt=""><h3>Bob Marley</h3></div>
-                    <div class="artista-escolha"><img class="foto" src="imagens/chorao.jfif" alt=""><h3>Charlie Brown Jr</h3></div>
-                </div>
-              </div>
-              
-              </div>
             </div>
         </div>
     </div>
+   
 </body>
 <script src="inicioscript.js"></script>
 

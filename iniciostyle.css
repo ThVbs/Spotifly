@@ -167,6 +167,10 @@ input{
     display: flex;
     flex-direction: column;
     height: 87vh;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    
 }
 .top-musicas{
   
@@ -819,4 +823,60 @@ p{
     height: auto auto;
     margin-left: 40px;
     margin-top: 30px;
+}
+#musicas_.musicas{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+}
+.capa_aleatoria{
+    width: 200px;
+    height: 200px;
+    opacity: 0; /* Começa invisível */
+    transform: translateY(-20px); /* Move os elementos para cima */
+    animation: fadeIn 0.5s forwards; /* Define a animação */
+    animation-delay: var(--delay); /* Atraso personalizado */
+}
+.titulo_aleatorio{
+    text-align: center;
+    color: white;
+    background-color: transparent;
+    font-size: x-large;
+    text-align: center;
+    margin-left: 43%;
+}
+.artistas_aleatorio{
+    text-align: center;
+    color: white;
+    background-color: transparent;
+}
+.embacado{
+    display: flex;
+    flex-direction: column;
+    filter: blur(10px);
+
+}
+.modal {
+    display: flex; /* Mantém o modal visível */
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%; /* Ocupa toda a largura da div pai */
+    height: 100%; /* Ocupa toda a altura da div pai */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-conteudo {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    height: 300px;
+    color: black;
 }
