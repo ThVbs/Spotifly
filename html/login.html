@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Spotifly</title>
+    <link rel="stylesheet" href="../css/stylelogin.css">
+</head>
+<body>
+    <div class="grupo">
+        <div class="fundo">
+            <div class="logo">
+                <h1>ENTRAR NO SPOTIFLY</h1>
+            </div>
+            <div class="entrada">
+                <div class="usuario">
+                    <label for="usr">EMAIL OU USUÁRIO</label>
+                    <input type="text" id="usr" required>
+                </div>
+                <div class="senha">
+                    <label for="senha">SENHA</label>
+                    <input type="password" id="senha" required>
+                </div>
+            </div>
+            <div class="botoes">
+                <button id="loginButton">ENTRAR</button><br>
+                <a href=""><p class="esqueci">Esqueci minha senha</p></a>
+                <p>Não tem uma conta?<a href="cadastro.html"><span class="sublinhado">Clique aqui</span></a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Lógica para o login
+        document.getElementById('loginButton').addEventListener('click', async () => {
+            const usr = document.getElementById('usr').value;
+            const senha = document.getElementById('senha').value;
+
+            try {
+                const response = await fetch('http://localhost:3000/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ usr, senha })
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`Erro ${response.status}: ${errorText}`);
+                }
+
+                const data = await response.json();
+                if (data.success) {
+                    window.location.href = 'inicio.html'; // Redireciona para a página iniciologado.html
+                } else {
+                    throw new Error('Usuário ou senha incorretos');
+                }
+            } catch (error) {
+                alert('Erro ao fazer login: ' + error.message); // Mensagem de erro
+            }
+        });
+    </script>
+</body>
+</html>
