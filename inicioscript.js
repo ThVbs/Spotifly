@@ -283,25 +283,76 @@ window.onclick = function(event) {
         }
     }
 }
-document.addEventListener("DOMContentLoaded", function() {
-    const modal = document.getElementById("modalMensagens");
-    const mensagemEl = document.getElementById("mensagem");
+
+   
+
+function mostrarMensagem(){
+    const mensagem = document.getElementById('mensagem')
     const mensagens = [
         "Bem-vindo ao Spotifly!",
         "Explore músicas e playlists.",
         "Curta suas músicas favoritas.",
         "Descubra novos artistas todos os dias."
-    ];
-    let indiceMensagem = 0;
+    ]
+    let indice = 0;
 
-    // Função para mostrar a mensagem atual
-    function mostrarMensagem() {
-        mensagemEl.innerHTML = mensagens[indiceMensagem];
-        indiceMensagem = (indiceMensagem + 1) % mensagens.length;
-    }
-    setInterval(mostrarMensagem, 10000);
-});
+    mensagem.innerHTML = mensagens[indice]
+    setInterval(function() {
+        indice +=1
+       if (indice < 3){
+        mensagem.innerHTML = mensagens[indice]
+        setInterval(function() {
+            mensagem.innerHTML += mensagemAtual[letraAtual];
+            letraAtual++;
+            if (letraAtual >= mensagemAtual.length) {
+                clearInterval(intervalo); // Limpa o intervalo
+                indiceMensagem = (indiceMensagem + 1) % mensagens.length;
+                letraAtual = 0;
+            }
+        }, 100);;
+       }else{
+        indice = 0
+        mensagem.innerHTML = mensagens[indice]
+        indice +=1
+       }
+    }, 5000)
+    
+}
+/*let mensagens = [
+    "Bem-vindo ao Spotifly!",
+    "Explore músicas e playlists.",
+    "Curta suas músicas favoritas.",
+    "Descubra novos artistas todos os dias."
+];
 
-window.onload = function() {
-    mostrarMensagem();
-};
+let indiceMensagem = 0; // Índice da mensagem atual
+let letraAtual = 0;     // Índice da letra atual na mensagem
+
+
+function mostrarMensagem() {
+    const mensagem = document.getElementById('mensagem');
+    
+    // Captura a mensagem atual
+    const mensagemAtual = mensagens[indiceMensagem];
+    
+    // Intervalo para exibir cada letra
+    const intervalo = setInterval(function() {
+        // Adiciona a próxima letra à mensagem
+        mensagem.innerHTML += mensagemAtual[letraAtual];
+        letraAtual++;
+
+        // Verifica se todas as letras foram exibidas
+        if (letraAtual >= mensagemAtual.length) {
+            clearInterval(intervalo); // Limpa o intervalo
+
+            // Atualiza o índice da mensagem e reinicia o índice da letra
+            indiceMensagem = (indiceMensagem + 1) % mensagens.length;
+            letraAtual = 0;
+
+            // Chama a função novamente após um breve atraso
+            setTimeout(mostrarMensagem, 5000); // Atraso de 2 segundos antes da próxima mensagem
+        }
+    }, 100); // Intervalo de 100ms entre as letras
+}
+*/
+
