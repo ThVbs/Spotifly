@@ -8,18 +8,41 @@
 <body>
     <h2>Cadastro de Novo Usuário</h2>
     <form id="cadastroForm">
-        <label for="usr">Usuário:</label>
-        <input type="text" id="usr" name="usr" required>
-        <br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <br>
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" required>
-        <br>
+        <input type="text" id="usr" name="usr" placeholder="Usuário" required>
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <input type="password" id="senha" name="senha" placeholder="Senha" required>
         <button type="submit">Cadastrar</button>
     </form>
-    <p id="message"></p>
+    
+    <div id="message"></div>
     <script src="/Spotifly/login.js"></script>
+    <script>
+        document.getElementById('cadastroForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const usr = document.getElementById('usr').value;
+    const email = document.getElementById('email').value;
+    const senha = document.getElementById('senha').value;
+
+    try {
+        const response = await fetch('/api/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ usr, email, senha })
+        });
+
+        const result = await response.json();
+
+        const messageEl = document.getElementById('message');
+        if (response.ok) {
+            messageEl.textContent = 'Usuário cadastrado com sucesso! Faça login.';
+        } else {
+            messageEl.textContent = result.error || 'Erro ao cadastrar o usuário';
+        }
+    } catch (error) {
+        console.error('Erro ao cadastrar:', error);
+    }
+});
+    </script>
 </body>
 </html>

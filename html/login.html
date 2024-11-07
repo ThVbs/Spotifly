@@ -20,5 +20,34 @@
     <p id="message"></p>
 
     <script src="/Spotifly/login.js"></script> 
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const usr = document.getElementById('usr').value;
+    const senha = document.getElementById('senha').value;
+
+    try {
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ usr, senha })
+        });
+
+        const result = await response.json();
+
+        const messageEl = document.getElementById('message');
+        if (response.ok) {
+            messageEl.textContent = 'Login bem-sucedido!';
+            // Redireciona para a página iniciologado.html
+            window.location.href = 'iniciologado.html';  // Redireciona para a página desejada
+        } else {
+            messageEl.textContent = result.error || 'Erro ao fazer login';
+        }
+    } catch (error) {
+        console.error('Erro ao fazer login:', error);
+    }
+});
+    </script>
 </body>
 </html>
