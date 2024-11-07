@@ -1,0 +1,452 @@
+*{
+    background-color: #121212;
+}
+
+.artista{
+    border-radius: 5px;
+    background-color:#5A74C3;
+    height: 250px;
+    color: white;
+    display: flex;
+    width: 100%;
+   flex-direction: row;
+   
+}
+.imagem_album{
+    width: 18%;
+    height: 100px;
+    background-color:#5A74C3;
+}
+.imagem_do_artista{
+    background-color:#5A74C3;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 25%;
+    justify-content: center;
+}
+.artista h1{
+    background-color:  transparent;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 50px;
+}
+
+.artista h4{
+    background-color: transparent;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+#imagem{
+    border-radius: 5px;
+    height: 200px;
+    margin: 25px;
+}
+
+#imgArtista{
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    
+}
+
+
+
+#play{
+    border-radius: 50px;
+    background-color:#610c13;
+    color: white;
+    width: 75px;
+    height: 25px;
+    margin-top: 10px;
+    border: none    ;
+}
+
+i{
+    background-color: transparent;
+}
+
+p{
+    color: #97989A;
+    background-color: transparent;
+}
+
+.botoes{
+    margin-top: 10px;
+}
+
+.musicas{
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    margin-top: 20px;
+    height: 65px;
+    border-radius: 5px;
+}
+
+.musicas:hover{
+    background-color: #2B3036;
+}
+
+.musicas h4{
+    margin-left: 20px;
+    margin-top: 10px;
+    background-color: transparent;
+}
+
+#artista1{
+    margin-top:35px;
+    margin-left: -142px;
+}
+
+#num1{
+    margin-left: 5px;
+    margin-top: 22px;
+}
+
+/* Divisao de musicas*/
+
+.musica2{
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    margin-top: 20px;
+    height: 65px;
+    border-radius: 5px;
+}
+
+#num2{
+    margin-left: 5px;
+    margin-top: 22px;
+}
+
+.musica2 h4{
+    margin-left: 20px;
+    margin-top: 10px;
+    background-color: transparent;
+}
+
+#artista2{
+    margin-top:35px;
+    margin-left: -150px;
+}
+
+.musica2:hover{
+    background-color: #2B3036;
+}
+
+/* Divisão */
+
+.musica3{
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    margin-top: 20px;
+    height: 65px;
+    border-radius: 5px;
+}
+
+#num3{
+    margin-left: 5px;
+    margin-top: 22px;
+}
+
+.musica3 h4{
+    margin-left: 20px;
+    margin-top: 10px;
+    background-color: transparent;
+}
+
+#artista3{
+    margin-top:35px;
+    margin-left: -80px;
+}
+
+.musica3:hover{
+    background-color: #2B3036;
+}
+
+/* Divisão */
+
+.musica4{
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    margin-top: 20px;
+    height: 65px;
+    border-radius: 5px;
+}
+
+#num4{
+    margin-left: 5px;
+    margin-top: 22px;
+}
+
+.musica4 h4{
+    margin-left: 20px;
+    margin-top: 10px;
+    background-color: transparent;
+}
+
+#artista4{
+    margin-top:35px;
+    margin-left: -38px;
+}
+
+.musica4:hover{
+    background-color: #2B3036;
+}
+
+/* Divisão */
+
+.musica5{
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    margin-top: 20px;
+    height: 65px;
+    border-radius: 5px;
+}
+
+#num5{
+    margin-left: 5px;
+    margin-top: 22px;
+}
+
+.musica5 h4{
+    margin-left: 20px;
+    margin-top: 10px;
+    background-color: transparent;
+}
+
+#artista5{
+    margin-top:35px;
+    margin-left: -28px;
+}
+
+.musica5:hover{
+    background-color: #2B3036;
+}
+
+/* Divisão */
+
+.musica6{
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    margin-top: 20px;
+    height: 65px;
+    border-radius: 5px;
+}
+
+#num6{
+    margin-left: 5px;
+    margin-top: 22px;
+}
+
+.musica6 h4{
+    margin-left: 20px;
+    margin-top: 10px;
+    background-color: transparent;
+}
+
+#artista6{
+    margin-top:35px;
+    margin-left: -45px;
+}
+
+.musica6:hover{
+    background-color: #2B3036;
+}
+
+/* Divisão */
+
+.musica7{
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    margin-top: 20px;
+    height: 65px;
+    border-radius: 5px;
+}
+
+#num7{
+    margin-left: 5px;
+    margin-top: 22px;
+}
+
+.musica7 h4{
+    margin-left: 20px;
+    margin-top: 10px;
+    background-color: transparent;
+}
+
+#artista7{
+    margin-top:35px;
+    margin-left: -40px;
+}
+
+.musica7:hover{
+    background-color: #2B3036;
+}
+
+/* Divisão */
+
+.musica8{
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    margin-top: 20px;
+    height: 65px;
+    border-radius: 5px;
+}
+
+#num8{
+    margin-left: 5px;
+    margin-top: 22px;
+}
+
+.musica8 h4{
+    margin-left: 20px;
+    margin-top: 10px;
+    background-color: transparent;
+}
+
+#artista8{
+    margin-top:35px;
+    margin-left: -80px;
+}
+
+.musica8:hover{
+    background-color: #2B3036;
+}
+
+/* Divisão */
+
+.musica9{
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    margin-top: 20px;
+    height: 65px;
+    border-radius: 5px;
+}
+
+#num9{
+    margin-left: 5px;
+    margin-top: 22px;
+}
+
+.musica9 h4{
+    margin-left: 20px;
+    margin-top: 10px;
+    background-color: transparent;
+}
+
+#artista9{
+    margin-top:35px;
+    margin-left: -68px;
+}
+
+.musica9:hover{
+    background-color: #2B3036;
+}
+
+/* Divisão */
+
+
+.musica10{
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    margin-top: 20px;
+    height: 65px;
+    border-radius: 5px;
+}
+
+#num10{
+    margin-left: 5px;
+    margin-top: 22px;
+}
+
+.musica10 h4{
+    margin-left: 20px;
+    margin-top: 10px;
+    background-color: transparent;
+}
+
+#artista10{
+    margin-top:35px;
+    margin-left: -40px;
+}
+
+.musica10:hover{
+    background-color: #2B3036;
+}
+
+/* Divisão */
+
+.musica11{
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    margin-top: 20px;
+    height: 65px;
+    border-radius: 5px;
+}
+
+#num11{
+    margin-left: 5px;
+    margin-top: 22px;
+}
+
+.musica11 h4{
+    margin-left: 20px;
+    margin-top: 10px;
+    background-color: transparent;
+}
+
+#artista11{
+    margin-top:35px;
+    margin-left: -28px;
+}
+
+.musica11:hover{
+    background-color: #2B3036;
+}
+
+/* Divisão */
+
+.musica12{
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    margin-top: 20px;
+    height: 65px;
+    border-radius: 5px;
+}
+
+#num12{
+    margin-left: 5px;
+    margin-top: 22px;
+}
+
+.musica12 h4{
+    margin-left: 20px;
+    margin-top: 10px;
+    background-color: transparent;
+}
+
+#artista12{
+    margin-top:35px;
+    margin-left: -65px;
+}
+
+.musica12:hover{
+    background-color: #2B3036;
+}
+
+
+
+
+

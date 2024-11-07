@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="../css/stylecadastro.css">
+</head>
+<body>
+    <a href="inicio.html"><img  class="voltar" src="imagens/botao-voltar.png" alt=""></a>
+    <div class="grupo">
+        <div class="fundo">
+            <div class="logo"><h1>SE CADASTRE NO SPOTIFLY</h1></div>
+            <div class="cadastro">
+            <form id="userForm"> 
+                <div class="email">
+                    <label for="">NOME DE USUÁRIO</label>
+                    <input type="text" id="usr" name="usr" required>
+                </div>
+                <div class="usuario">
+                    <label for="">SEU ENDEREÇO DE EMAIL</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="senha">
+                    <label for="">DIGITE SUA SENHA</label>
+                    <input type="password" id="senha" name="senha" required>
+                </div>
+                <div class="senhadnv">
+                    <label for="">DIGITE SUA SENHA NOVAMENTE</label>
+                    <input type="password" id="senhaDnvCadastro">
+                </div>
+            </form>    
+            </div>
+            <div class="botoes"><br>
+                <button type="button" onclick="submitForm()">Cadastrar</button><br>
+                <p>Já possui cadastro?<a href="login.html"><span class="sublinhado">Faça login</span></a></p>
+            </div>
+        </div>
+    </div>
+    <script src="inicioscript.js">
+        
+    </script>
+</body>
+</html>
