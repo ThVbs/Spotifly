@@ -196,13 +196,7 @@ async function submitForm() {
     const senha = document.getElementById('senha').value;
 
     try {
-        const response = await fetch('http://localhost:3000/dados', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ usr, email, senha })
-        });
+        const response = await fetch('http://localhost:3000/dados');
 
         if (!response.ok) {
             const errorText = await response.text();
@@ -264,6 +258,7 @@ async function mostrarMusicaAleatoria() {
 }
 
 function proibir(){
+    alert('Crie ou faça login na sua conta')
 
 }
 function toggleDropdown() {
@@ -286,7 +281,7 @@ window.onclick = function(event) {
 
    
 
-function mostrarMensagem(){
+/*function mostrarMensagem(){
     const mensagem = document.getElementById('mensagem')
     const mensagens = [
         "Bem-vindo ao Spotifly!",
@@ -301,15 +296,6 @@ function mostrarMensagem(){
         indice +=1
        if (indice < 3){
         mensagem.innerHTML = mensagens[indice]
-        setInterval(function() {
-            mensagem.innerHTML += mensagemAtual[letraAtual];
-            letraAtual++;
-            if (letraAtual >= mensagemAtual.length) {
-                clearInterval(intervalo); // Limpa o intervalo
-                indiceMensagem = (indiceMensagem + 1) % mensagens.length;
-                letraAtual = 0;
-            }
-        }, 100);;
        }else{
         indice = 0
         mensagem.innerHTML = mensagens[indice]
@@ -317,42 +303,47 @@ function mostrarMensagem(){
        }
     }, 5000)
     
-}
-/*let mensagens = [
-    "Bem-vindo ao Spotifly!",
-    "Explore músicas e playlists.",
-    "Curta suas músicas favoritas.",
-    "Descubra novos artistas todos os dias."
-];
-
-let indiceMensagem = 0; // Índice da mensagem atual
-let letraAtual = 0;     // Índice da letra atual na mensagem
-
-
+}*/
 function mostrarMensagem() {
     const mensagem = document.getElementById('mensagem');
+    const mensagens = [
+        "Bem-vindo ao Spotifly!",
+        "Explore músicas e playlists.",
+        "Curta suas músicas favoritas.",
+        "Descubra novos artistas todos os dias.",
+        "Crie uma conta e curta agora",
+    ];
+    let indice = 0;
     
-    // Captura a mensagem atual
-    const mensagemAtual = mensagens[indiceMensagem];
+    function digitarMensagem(texto) {
+        let letraIndice = 0;
+        mensagem.innerHTML = ""; // Limpa a mensagem anterior
+
+        const intervalo = setInterval(function() {
+            // Adiciona uma letra ao texto
+            mensagem.innerHTML += texto[letraIndice];
+            letraIndice++;
+
+            // Quando todas as letras tiverem sido adicionadas, limpa o intervalo
+            if (letraIndice === texto.length) {
+                clearInterval(intervalo);
+            }
+        }, 100); // A cada 100ms, uma letra é adicionada
+    }
+
+    function atualizarMensagem() {
+        const mensagemAtual = mensagens[indice];
+        digitarMensagem(mensagemAtual); // Chama a função para digitar a mensagem
+        indice = (indice + 1) % mensagens.length; // Atualiza o índice
+    }
+
+    // Exibe a primeira mensagem imediatamente
+    atualizarMensagem();
     
-    // Intervalo para exibir cada letra
-    const intervalo = setInterval(function() {
-        // Adiciona a próxima letra à mensagem
-        mensagem.innerHTML += mensagemAtual[letraAtual];
-        letraAtual++;
+    // Configura o intervalo para atualizar a mensagem a cada 5 segundos
+    setInterval(atualizarMensagem, 5000);
+}window.onload = mostrarMensagem;
 
-        // Verifica se todas as letras foram exibidas
-        if (letraAtual >= mensagemAtual.length) {
-            clearInterval(intervalo); // Limpa o intervalo
 
-            // Atualiza o índice da mensagem e reinicia o índice da letra
-            indiceMensagem = (indiceMensagem + 1) % mensagens.length;
-            letraAtual = 0;
 
-            // Chama a função novamente após um breve atraso
-            setTimeout(mostrarMensagem, 5000); // Atraso de 2 segundos antes da próxima mensagem
-        }
-    }, 100); // Intervalo de 100ms entre as letras
-}
-*/
 
