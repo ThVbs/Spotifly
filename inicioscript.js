@@ -196,13 +196,7 @@ async function submitForm() {
     const senha = document.getElementById('senha').value;
 
     try {
-        const response = await fetch('http://localhost:3000/dados', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ usr, email, senha })
-        });
+        const response = await fetch('http://localhost:3000/dados');
 
         if (!response.ok) {
             const errorText = await response.text();
@@ -264,6 +258,7 @@ async function mostrarMusicaAleatoria() {
 }
 
 function proibir(){
+    alert('Crie ou faça login na sua conta')
 
 }
 function toggleDropdown() {
@@ -283,25 +278,72 @@ window.onclick = function(event) {
         }
     }
 }
-document.addEventListener("DOMContentLoaded", function() {
-    const modal = document.getElementById("modalMensagens");
-    const mensagemEl = document.getElementById("mensagem");
+
+   
+
+/*function mostrarMensagem(){
+    const mensagem = document.getElementById('mensagem')
     const mensagens = [
         "Bem-vindo ao Spotifly!",
         "Explore músicas e playlists.",
         "Curta suas músicas favoritas.",
         "Descubra novos artistas todos os dias."
+    ]
+    let indice = 0;
+
+    mensagem.innerHTML = mensagens[indice]
+    setInterval(function() {
+        indice +=1
+       if (indice < 3){
+        mensagem.innerHTML = mensagens[indice]
+       }else{
+        indice = 0
+        mensagem.innerHTML = mensagens[indice]
+        indice +=1
+       }
+    }, 5000)
+    
+}*/
+function mostrarMensagem() {
+    const mensagem = document.getElementById('mensagem');
+    const mensagens = [
+        "Bem-vindo ao Spotifly!",
+        "Explore músicas e playlists.",
+        "Curta suas músicas favoritas.",
+        "Descubra novos artistas todos os dias.",
+        "Crie uma conta e curta agora",
     ];
-    let indiceMensagem = 0;
+    let indice = 0;
+    
+    function digitarMensagem(texto) {
+        let letraIndice = 0;
+        mensagem.innerHTML = ""; // Limpa a mensagem anterior
 
-    // Função para mostrar a mensagem atual
-    function mostrarMensagem() {
-        mensagemEl.innerHTML = mensagens[indiceMensagem];
-        indiceMensagem = (indiceMensagem + 1) % mensagens.length;
+        const intervalo = setInterval(function() {
+            // Adiciona uma letra ao texto
+            mensagem.innerHTML += texto[letraIndice];
+            letraIndice++;
+
+            // Quando todas as letras tiverem sido adicionadas, limpa o intervalo
+            if (letraIndice === texto.length) {
+                clearInterval(intervalo);
+            }
+        }, 100); // A cada 100ms, uma letra é adicionada
     }
-    setInterval(mostrarMensagem, 10000);
-});
 
-window.onload = function() {
-    mostrarMensagem();
-};
+    function atualizarMensagem() {
+        const mensagemAtual = mensagens[indice];
+        digitarMensagem(mensagemAtual); // Chama a função para digitar a mensagem
+        indice = (indice + 1) % mensagens.length; // Atualiza o índice
+    }
+
+    // Exibe a primeira mensagem imediatamente
+    atualizarMensagem();
+    
+    // Configura o intervalo para atualizar a mensagem a cada 5 segundos
+    setInterval(atualizarMensagem, 5000);
+}window.onload = mostrarMensagem;
+
+
+
+
