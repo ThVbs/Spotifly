@@ -1,28 +1,206 @@
-body {
+* {
     margin: 0;
     padding: 0;
+}
+
+body {
     background-color: black;
 }
 
-
 header {
     background: linear-gradient(to bottom, rgb(97, 12, 19), black);
-    height: 250px;
+    height: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     font-size: 24px;
     font-family: Arial, sans-serif;
+    margin-bottom: 8px;
 }
 
 footer {
     background: linear-gradient(to bottom, black, rgb(97, 12, 19));
-    height: 180px;
+    height: 110px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     font-size: 24px;
     font-family: Arial, sans-serif;
+    margin-top: 12px;
+}
+
+.seguindo_perfil {
+    color: antiquewhite;
+}
+
+.descricao_perfil {
+    color: rgb(255, 255, 255);
+}
+
+.seguindo_perfil {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 200px;
+    margin: 20px auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+.container_perfil {
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+    padding: 20px;
+    background-color: #0f0f0f;
+    border-radius: 15px;
+    box-shadow: 2px 2px 3px rgba(255, 255, 255, 0.5);
+    gap: 20px;
+}
+
+.foto_perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.foto_perfil img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.foto_perfil h1 {
+    font-size: 26px;
+    color: #ffffff;
+}
+
+.descricao_fraca_perfil p {
+    display: flex;
+    justify-content: center;
+    color: #a0a0a0;
+    font-size: 14px;
+}
+
+.seguindo_perfil {
+    display: flex;
+}
+
+.seguindo_perfil .item h4 {
+    font-size: 14px;
+    color: #000000;
+}
+
+.seguindo_perfil .item p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000000;
+}
+
+.descricao_perfil p {
+    font-size: 17px;
+    color: #ffffff;
+    display: flex;
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 17px;
+}
+
+.redes_sociais_icon_link img {
+    width: 40px;
+    height: 40px;
+}
+
+.redes_sociais_icon_link a {
+    margin-left: 80px;
+}
+
+section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+/* Ajuste para o container_cima para que ele fique ao lado direito */
+.container_cima {
+    width: 60%;
+    background-color: #0f0f0f;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    background-color: #0f0f0f;
+    border-radius: 15px;
+    box-shadow: 2px 2px 3px rgba(255, 255, 255, 0.5);
+    gap: 20px;
+}
+
+.botao_cima {
+    width: 100px;
+    background-color: rgb(97, 12, 19);
+    color: white;
+    border-radius: 15px;
+    box-shadow: 2px 2px 3px rgba(255, 255, 255, 0.5);
+    gap: 20px;
+}
+
+.direita {
+    height: 80vh;
+    width: 60%;
+    background-color: #0f0f0f;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    background-color: #0f0f0f;
+    border-radius: 15px;
+    box-shadow: 2px 2px 3px rgba(255, 255, 255, 0.5);
+    gap: 20px;
+}
+
+.direita .frases_cima {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    color: white;
+}
+
+.frases_cima button {
+    font-size: 22px;
+    background-color: transparent;
+    color: #ccc;
+}
+
+.imagens img {
+    height: 200px;
+    width: 200px;
+    padding: 5px;
+}
+
+.container_cima {
+    display: flex;
+    width: 95%;
+    justify-content: space-between;
+}
+
+.container_galeria {
+    margin-top: 20px;
+    margin-left: 65px;
+}
+
+.musicas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 655px;
+    height: 200px;
 }
