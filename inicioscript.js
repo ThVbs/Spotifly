@@ -26,7 +26,7 @@ function suaPlaylist() {
     <div class="container3">
     <div class="capa-playlist">
         <img class="nota-musical" src="imagens/nota-musical.jpg" alt="">
-        <h1 class="titulo-playlist">${novoNome}</h1>
+        <h1 class="titulo-playlist"></h1>
     </div>
     <div class="corpo-playlist" id="corpo-playlist">
         <div class="mensagem-add"><h2 class="mensagem-add-2" onclick="addPrimeira()" id="meubotao">+ Adicione uma música</h2></div>
@@ -39,7 +39,7 @@ function suaPlaylist() {
 async function carregarPlaylist() {
     
     try {
-        const response = await fetch('http://127.0.0.1:3000/puxar')
+        const response = await fetch('/puxar')
         if (!response.ok) {
             throw new Error(`Erro na requisição: ${response.status}`);
         }
@@ -47,18 +47,21 @@ async function carregarPlaylist() {
         
 
         const data = await response.json();
+
+        console.log(data)
         for (let i=0; i< data.length; i++){
             console.log(data[i].titulo)
             editar.innerHTML += `<div class="mensagem3">
             <img class="reproduzir" src="imagens/icons8-reproduzir-50.png" alt=""><button onclick="suaPlaylist()" class="tituloPlaylist">${data[i].titulo}</button> 
-         </div>`
-         
+         </div>`   
         }
        
     } catch (error) {
         console.error('Erro ao carregar a playlist:', error);
     }
 }
+
+
 
 async function criarPlaylist() {
     const titulo = prompt('Digite o título da playlist:');
@@ -107,6 +110,7 @@ async function logout() {
         if (response.ok) {
             // Exibe a mensagem de sucesso e redireciona o usuário para a página de login
             alert(result.message);
+            localStorage.clear();
             window.location.href = '/Spotifly/html/login.html';  // Ou o caminho correto para a página de login
         } else {
             // Exibe a mensagem de erro caso a requisição falhe

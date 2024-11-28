@@ -46,6 +46,24 @@
                 </div>
             </div>
             <div class="musicas_" id="musicas_">
+                <div class="container3">
+                    <div class="capa-playlist">
+                        <img class="nota-musical" src="imagens/nota-musical.jpg" alt="">
+                        <h1 class="titulo-playlist">Funk</h1>
+                    </div>
+                    <div class="corpo-playlist" id="corpo-playlist">
+                        <form id="pesquisaForm">
+                            <div class="mensagem-add">
+                              <input type="text" id="pesquisaInput" placeholder="Digite o título da música">
+                              <button type="submit">Pesquisar</button>
+                            </div>
+                          </form>
+                    </div>
+                    <div id="resultados">
+                        <h2>Resultados:</h2>
+                        <ul id="listaResultados"></ul>
+                      </div>
+                </div>
                
             </div>
         </div>
@@ -54,32 +72,55 @@
     <script>
        document.getElementById('welcome').textContent = ` ${sessionStorage.getItem('userName')}`;
 
-// Lógica para criar a playlist
-document.getElementById('createPlaylist').addEventListener('click', async () => {
-    const titulo = document.getElementById('playlistName').value;
+async function carregarPlaylistPost(){
+    const usr = document.getElementById('welcome').textContent;
 
-    if (!titulo) {
-        alert('Digite um nome para a playlist!');
-        return;
-    }
+    await fetch("http://localhost:3000/puxar",{
+        method: "POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({usuario:usr})
+    })
+
+   
+}
+
+const form = document.getElementById('pesquisaForm');
+  const listaResultados = document.getElementById('listaResultados');
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault(); // Impede o recarregamento da página
+
+    const input = document.getElementById('pesquisaInput').value;
 
     try {
-        const response = await fetch('/criar-playlist', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ titulo })
-        });
+      const response = await fetch('/pesquisar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pesquisa: input }),
+      });
 
-        const result = await response.json();
-        if (response.ok) {
-            alert(result.message); // Sucesso
-        } else {
-            alert(result.message); // Erro do backend
-        }
-    } catch (err) {
-        console.error('Erro ao criar a playlist:', err);
+      const data = await response.json();
+
+      // Limpa os resultados anteriores
+      listaResultados.innerHTML = '';
+
+      // Exibe os resultados
+      if (data.musicas.length > 0) {
+        data.musicas.forEach((musica) => {
+          const li = document.createElement('li');
+          li.textContent = `Título: ${musica.titulo}`;
+          li.style.color = 'white'
+          listaResultados.appendChild(li);
+        });
+      } else {
+        listaResultados.innerHTML = '<li>Nenhum resultado encontrado.</li>';
+      }
+    } catch (erro) {
+      console.error('Erro ao buscar resultados:', erro);
     }
-});
+  });
     </script>
 </body>
 </html>
