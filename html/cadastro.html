@@ -6,15 +6,35 @@
     <title>Cadastro</title>
 </head>
 <body>
-    <h2>Cadastro de Novo Usuário</h2>
-    <form id="cadastroForm">
-        <input type="text" id="usr" name="usr" placeholder="Usuário" required>
-        <input type="email" id="email" name="email" placeholder="Email" required>
-        <input type="password" id="senha" name="senha" placeholder="Senha" required>
-        <button type="submit">Cadastrar</button>
-    </form>
-    
-    <div id="message"></div>
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cadastro</title>
+        <link rel="stylesheet" href="/Spotifly/css/stylecadastronovo.css">
+    </head>
+    <body>
+        <form id="cadastroForm">
+            <div class="container">
+        <div class="modal">
+            <h2>Cadastro de Novo Usuário</h2>
+        <div class="inputs">
+            <label for="usr">Usuário:</label>
+            <input type="text" id="usr" name="usr" required>
+            <br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <br>
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required>
+            <br>
+        </div>
+            <button id="butao" type="submit">Cadastrar</button>
+            <p id="message"></p>
+        </div>
+        </div>
+        </form>
     <script src="/Spotifly/login.js"></script>
     <script>
         document.getElementById('cadastroForm').addEventListener('submit', async (e) => {

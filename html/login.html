@@ -4,22 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Spotifly</title>
-    <link rel="stylesheet" href="../css/stylelogin.css">
+    <link rel="stylesheet" href="../css/styleloginnovo.css">
 </head>
 <body>
-    <h2>Login</h2>
     <form id="loginForm">
-        <label for="usr">Usuário:</label>
-        <input type="text" id="usr" name="usr" required>
-        <br>
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" required>
-        <br>
-        <button type="submit">Entrar</button>
+        <div class="container">
+        <div class="modal">
+            <h1>Login</h1>
+            <div class="inputs">
+            <label for="usr">Usuário:</label>
+            <input type="text" id="usr" name="usr" required>
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required>
+        </div>
+        <button id="butao" type="submit">Entrar</button><br>
+            <div class="buttons">
+                <a class="botoes" href="../html/cadastro.html">Não tem login? Cadastre-se</a><br>
+                <a class="botoes" href="../html/redefinir.html">Esqueci minha senha</a>
+                <p id="message"></p>
+            </div>
+          </div>
+        </div>
     </form>
+    <script src="/Spotifly/login.js"></script>
     <p id="message"></p>
-
-    <script src="/Spotifly/login.js"></script> 
     <script>
         document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault(); // Evita o comportamento padrão do formulário
