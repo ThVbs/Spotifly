@@ -57,30 +57,132 @@ async function carregarPlaylist() {
 
 
 
-function suaPlaylist(element) {
+async function suaPlaylist(element) {
     const idGlobal = element.getAttribute('data-id');
     console.log(idGlobal);
 
+    // Obtém as músicas da playlist pelo ID
+    const musicas = await carregarMusicasDaPlaylist(idGlobal);
+
+    // Recria o conteúdo dinâmico
     document.getElementById('musicas_').innerHTML = `
-    <div class="container3">
-    <div class="capa-playlist">
-        <img class="nota-musical" src="imagens/nota-musical.jpg" alt="">
-        <h1 class="titulo-playlist">Funk</h1>
-    </div>
-    <div class="corpo-playlist" id="corpo-playlist">
-        <form id="pesquisaForm">
-            <div class="mensagem-add">
-              <input type="text" id="pesquisaInput" placeholder="Digite o título da música">
-              <button id="pesquisaForm">Pesquisar</button>
+        <div class="container3">
+            <div class="capa-playlist">
+                <img class="nota-musical" src="imagens/nota-musical.jpg" alt="">
+                <h1 class="titulo-playlist">Nome da playlist</h1>
             </div>
-          </form>
-    </div>
-    <div id="resultados">
-        <h2>Resultados:</h2>
-        <ul id="listaResultados"></ul>
-      </div>
-</div>
+            <div id="musicas-carregadas">
+                <h2>Suas Músicas</h2>
+                <ul>
+                    ${musicas.map(musica => `<li style="color: white;">${musica.nome_musica}</li>`).join('')}
+                </ul>
+            </div>
+            <div class="corpo-playlist" id="corpo-playlist">
+                <form id="pesquisaForm">
+                    <div class="mensagem-add">
+                        <input type="text" id="pesquisaInput" placeholder="Digite o título da música">
+                        <button type="submit">Pesquisar</button>
+                    </div>
+                </form>
+            </div>
+            <div id="resultados">
+                <h2>Resultados:</h2>
+                <ul id="listaResultados"></ul>
+            </div>
+        </div>
     `;
+
+    // Adiciona evento ao formulário de pesquisa
+    document.getElementById('pesquisaForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        console.log('Novo formulário funcionando!');
+        await pesquisarMusicas(idGlobal);
+    });
+}
+
+
+async function carregarMusicasDaPlaylist(idPlaylist) {
+    try {
+        const response = await fetch('/playlist/musicas', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id_playlist: idPlaylist }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Erro ao carregar músicas: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        return data.musicas;
+    } catch (error) {
+        console.error('Erro ao carregar músicas da playlist:', error);
+        return [];
+    }
+}
+
+
+async function pesquisarMusicas(idGlobal) {
+    const input = document.getElementById('pesquisaInput').value;
+    const listaResultados = document.getElementById('listaResultados');
+
+    try {
+        const response = await fetch('/pesquisar', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ pesquisa: input }),
+        });
+
+        const data = await response.json();
+        console.log(data);
+
+        // Limpa os resultados anteriores
+        listaResultados.innerHTML = '';
+        input.value = '';
+
+        // Exibe os resultados
+        if (data.musicas.length > 0) {
+            data.musicas.forEach((musica) => {
+                const li = document.createElement('li');
+                li.style.color = 'white';
+
+                const button = document.createElement('button');
+                button.textContent = 'Adicionar';
+                button.type = 'button'; // Impede submit
+                button.style.marginLeft = '10px';
+
+                // Evento para adicionar música
+                button.addEventListener('click', async () => {
+                    try {
+                        const response = await fetch('/adicionar', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                id_playlist: idGlobal,
+                                nome_musica: musica.titulo,
+                            }),
+                        });
+
+                        if (response.ok) {
+                            alert('Música adicionada com sucesso!');
+                        } else {
+                            alert('Erro ao adicionar música.');
+                        }
+                    } catch (erro) {
+                        console.error('Erro ao adicionar música:', erro);
+                    }
+                });
+
+                li.textContent = `Título: ${musica.titulo}`;
+                li.appendChild(button);
+                listaResultados.appendChild(li);
+            });
+        } else {
+            listaResultados.innerHTML = '<li>Nenhum resultado encontrado.</li>';
+        }
+    } catch (erro) {
+        console.error('Erro ao buscar resultados:', erro);
+    }
 }
 
 

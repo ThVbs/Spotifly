@@ -11,9 +11,8 @@
         <div class="esquerda">
             <div class="inicio">
                 <h1 class="titulo-principal">Spotifly</h1>
-                <button><img class="home" src="../imagens/icons8-botão-home-50.png"></button> <a href="">
-                    <h2>Início</h2>
-                </a>
+                <button><img class="home" src="../imagens/icons8-botão-home-50.png"></button> 
+                <a href=""><h2 >Início</h2></a>
                 <button onclick="mostrarMusicaAleatoria()"><img class="home" src="../imagens/explorar.png"></button>
                 <h2 onclick="mostrarMusicaAleatoria()" class="explorar2">Explorar</h2>
             </div>
@@ -22,8 +21,7 @@
                     <h1>Playlists</h1>
                 </div>
                 <div id="pastas" class="pastas">
-                    <div class="mensagem" id =>
-                        
+                    <div class="mensagem">
                         <button id="criar" class="criar" onclick="criarPlaylist()">CRIAR</button>
                     </div>
                 </div>
@@ -47,13 +45,15 @@
             </div>
             <div class="musicas_" id="musicas_">
                 
-               
+
             </div>
         </div>
     </div>
     <script src="/Spotifly/inicioscript.js"></script>
     <script>
-       document.getElementById('welcome').textContent = ` ${sessionStorage.getItem('userName')}`;
+        document.getElementById('welcome').textContent = `${sessionStorage.getItem('userName')}`;
+
+        document.getElementById('welcome').textContent = ` ${sessionStorage.getItem('userName')}`;
 
 async function carregarPlaylistPost(){
     const usr = document.getElementById('welcome').textContent;
@@ -68,71 +68,7 @@ async function carregarPlaylistPost(){
 
    
 }
-
-const form = document.getElementById('pesquisaForm');
-  const listaResultados = document.getElementById('listaResultados');
-
-  form.addEventListener('submit', async (event) => {
-
-    const input = document.getElementById('pesquisaInput').value;
-
-    try {
-        const response = await fetch('/pesquisar', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ pesquisa: input }),
-        });
-
-        const data = await response.json();
-        console.log(data)
-
-        // Limpa os resultados anteriores
-        listaResultados.innerHTML = '';
-
-        // Exibe os resultados
-        if (data.musicas.length > 0) {
-            data.musicas.forEach((musica) => {
-                const li = document.createElement('li');
-                li.style.color = 'white';
-
-                const button = document.createElement('button');
-                button.textContent = 'Adicionar';
-                button.type = 'button'; // Impede que dispare o evento de submit
-                button.style.marginLeft = '10px';
-
-                // Adiciona evento para enviar a música ao backend
-                button.addEventListener('click', async () => {
-                    try {
-                        const response = await fetch('/adicionar', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                id_playlist: idGlobal,
-                                nome_musica: musica.titulo,
-                            }),
-                        });
-
-                        if (response.ok) {
-                            alert('Música adicionada com sucesso!');
-                        } else {
-                            alert('Erro ao adicionar música.');
-                        }
-                    } catch (erro) {
-                        console.error('Erro ao adicionar música:', erro);
-                    }
-                });
-
-                li.textContent = `Título: ${musica.titulo}`;
-                li.appendChild(button);
-                listaResultados.appendChild(li);
-            });
-        } else {
-            listaResultados.innerHTML = '<li>Nenhum resultado encontrado.</li>';
-        }
-    } catch (erro) {
-        console.error('Erro ao buscar resultados:', erro);
-    }
-});
     </script>
 </body>
 </html>
+
