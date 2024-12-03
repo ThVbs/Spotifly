@@ -185,6 +185,31 @@ async function pesquisarMusicas(idGlobal) {
     }
 }
 
+async function mostrarMusicaAleatoria() {
+    try {
+        const response = await fetch('/musica-aleatoria');
+        if (!response.ok) {
+            throw new Error(`Erro na requisição: ${response.status}`);
+        }
+        const musica = await response.json();
+
+        // Se você tiver uma div específica para mostrar a música
+        const container = document.getElementById('musicas_');
+        container.innerHTML = ''; // Limpa o conteúdo anterior
+
+        const musicaDiv = document.createElement('div');
+        musicaDiv.classList.add('musica');
+        musicaDiv.innerHTML = `
+            <img class="tamanho_da_imagem" src="${musica.imagem_url}" alt="${musica.titulo}" class="imagem-musica" />
+            <h2 class="titulo-musica">${musica.titulo}</h2>
+            <h3 class="artista-musica">${musica.artista}</h3>
+        `;
+        container.appendChild(musicaDiv);
+    } catch (error) {
+        console.error('Erro ao buscar música aleatória:', error);
+        alert('Não foi possível carregar a música. Tente novamente mais tarde.');
+    }
+}
 
 
 
