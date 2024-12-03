@@ -46,24 +46,7 @@
                 </div>
             </div>
             <div class="musicas_" id="musicas_">
-                <div class="container3">
-                    <div class="capa-playlist">
-                        <img class="nota-musical" src="imagens/nota-musical.jpg" alt="">
-                        <h1 class="titulo-playlist">Funk</h1>
-                    </div>
-                    <div class="corpo-playlist" id="corpo-playlist">
-                        <form id="pesquisaForm">
-                            <div class="mensagem-add">
-                              <input type="text" id="pesquisaInput" placeholder="Digite o título da música">
-                              <button type="submit">Pesquisar</button>
-                            </div>
-                          </form>
-                    </div>
-                    <div id="resultados">
-                        <h2>Resultados:</h2>
-                        <ul id="listaResultados"></ul>
-                      </div>
-                </div>
+                
                
             </div>
         </div>
@@ -90,37 +73,66 @@ const form = document.getElementById('pesquisaForm');
   const listaResultados = document.getElementById('listaResultados');
 
   form.addEventListener('submit', async (event) => {
-    event.preventDefault(); // Impede o recarregamento da página
 
     const input = document.getElementById('pesquisaInput').value;
 
     try {
-      const response = await fetch('/pesquisar', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ pesquisa: input }),
-      });
-
-      const data = await response.json();
-
-      // Limpa os resultados anteriores
-      listaResultados.innerHTML = '';
-
-      // Exibe os resultados
-      if (data.musicas.length > 0) {
-        data.musicas.forEach((musica) => {
-          const li = document.createElement('li');
-          li.textContent = `Título: ${musica.titulo}`;
-          li.style.color = 'white'
-          listaResultados.appendChild(li);
+        const response = await fetch('/pesquisar', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ pesquisa: input }),
         });
-      } else {
-        listaResultados.innerHTML = '<li>Nenhum resultado encontrado.</li>';
-      }
+
+        const data = await response.json();
+        console.log(data)
+
+        // Limpa os resultados anteriores
+        listaResultados.innerHTML = '';
+
+        // Exibe os resultados
+        if (data.musicas.length > 0) {
+            data.musicas.forEach((musica) => {
+                const li = document.createElement('li');
+                li.style.color = 'white';
+
+                const button = document.createElement('button');
+                button.textContent = 'Adicionar';
+                button.type = 'button'; // Impede que dispare o evento de submit
+                button.style.marginLeft = '10px';
+
+                // Adiciona evento para enviar a música ao backend
+                button.addEventListener('click', async () => {
+                    try {
+                        const response = await fetch('/adicionar', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                id_playlist: idGlobal,
+                                nome_musica: musica.titulo,
+                            }),
+                        });
+
+                        if (response.ok) {
+                            alert('Música adicionada com sucesso!');
+                        } else {
+                            alert('Erro ao adicionar música.');
+                        }
+                    } catch (erro) {
+                        console.error('Erro ao adicionar música:', erro);
+                    }
+                });
+
+                li.textContent = `Título: ${musica.titulo}`;
+                li.appendChild(button);
+                listaResultados.appendChild(li);
+            });
+        } else {
+            listaResultados.innerHTML = '<li>Nenhum resultado encontrado.</li>';
+        }
     } catch (erro) {
-      console.error('Erro ao buscar resultados:', erro);
+        console.error('Erro ao buscar resultados:', erro);
     }
-  });
+});
     </script>
 </body>
 </html>

@@ -20,46 +20,70 @@ function adicionar() {
     <img class="reproduzir" src="imagens/icons8-reproduzir-50.png" alt=""><button onclick="suaPlaylist()" class="tituloPlaylist">${novoNome}</button> 
  </div>`;
 }
+let idGlobal 
 
-function suaPlaylist() {
+
+
+async function carregarPlaylist() {
+    try {
+        const response = await fetch('/puxar');
+        if (!response.ok) {
+            throw new Error(`Erro na requisição: ${response.status}`);
+        }
+
+        const editar = document.getElementById('pastas');
+        const data = await response.json();
+
+        console.log(data);
+
+        for (let i = 0; i < data.length; i++) {
+            console.log(data[i].titulo);
+            editar.innerHTML += `
+                <div class="mensagem3">
+                    <img class="reproduzir" src="imagens/icons8-reproduzir-50.png" alt="">
+                    <button 
+                        onclick="suaPlaylist(this)" 
+                        data-id="${data[i].id}" 
+                        class="tituloPlaylist">
+                        ${data[i].titulo}
+                    </button> 
+                </div>
+            `;
+        }
+    } catch (error) {
+        console.error('Erro ao carregar a playlist:', error);
+    }
+}
+
+
+
+function suaPlaylist(element) {
+    const idGlobal = element.getAttribute('data-id');
+    console.log(idGlobal);
+
     document.getElementById('musicas_').innerHTML = `
     <div class="container3">
     <div class="capa-playlist">
         <img class="nota-musical" src="imagens/nota-musical.jpg" alt="">
-        <h1 class="titulo-playlist"></h1>
+        <h1 class="titulo-playlist">Funk</h1>
     </div>
     <div class="corpo-playlist" id="corpo-playlist">
-        <div class="mensagem-add"><h2 class="mensagem-add-2" onclick="addPrimeira()" id="meubotao">+ Adicione uma música</h2></div>
+        <form id="pesquisaForm">
+            <div class="mensagem-add">
+              <input type="text" id="pesquisaInput" placeholder="Digite o título da música">
+              <button id="pesquisaForm">Pesquisar</button>
+            </div>
+          </form>
     </div>
+    <div id="resultados">
+        <h2>Resultados:</h2>
+        <ul id="listaResultados"></ul>
+      </div>
 </div>
     `;
 }
 
 
-async function carregarPlaylist() {
-    
-    try {
-        const response = await fetch('/puxar')
-        if (!response.ok) {
-            throw new Error(`Erro na requisição: ${response.status}`);
-        }
-        const editar = document.getElementById('pastas')
-        
-
-        const data = await response.json();
-
-        console.log(data)
-        for (let i=0; i< data.length; i++){
-            console.log(data[i].titulo)
-            editar.innerHTML += `<div class="mensagem3">
-            <img class="reproduzir" src="imagens/icons8-reproduzir-50.png" alt=""><button onclick="suaPlaylist()" class="tituloPlaylist">${data[i].titulo}</button> 
-         </div>`   
-        }
-       
-    } catch (error) {
-        console.error('Erro ao carregar a playlist:', error);
-    }
-}
 
 
 
