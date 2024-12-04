@@ -403,6 +403,7 @@ a{
 .container3{
     width: 100%;
     height: 100%;
+    /* margin: 20px; */
 }
 
 #suas_musics{
@@ -449,7 +450,11 @@ a{
     display: flex;
     float: right;
     margin-right: 10vh;
-    margin-top: -15vh;
+    margin-top: -16vh;
+}
+
+li{
+    margin-left: 10px;
 }
 .musica_escolhida{
     height: 300px;
@@ -505,7 +510,5 @@ audio{
     width: 100%;
     height: 100vh;
 }
-
-
 
 
