@@ -259,6 +259,35 @@ async function mostrarMusicaAleatoria() {
         alert('Não foi possível carregar a música. Tente novamente mais tarde.');
     }
 }
+async function exibirMusicasAleatorias() {
+    try {
+        const response = await fetch('/tres-musicas-aleatorias');
+        if (!response.ok) {
+            throw new Error(`Erro na requisição: ${response.status}`);
+        }
+        const musicas = await response.json();
+
+        // Seleciona o container para exibir as músicas
+        const container = document.getElementById('musicas_aleatorias');
+        container.innerHTML = ''; // Limpa o conteúdo anterior
+
+        // Adiciona cada música ao container
+        musicas.forEach((musica) => {
+            const musicaDiv = document.createElement('div');
+            musicaDiv.classList.add('foto_aleatoria');
+            musicaDiv.innerHTML = `
+                <img src="${musica.imagem_url}" alt="${musica.titulo}" />
+                <h3>${musica.titulo}</h3>
+            `;
+            container.appendChild(musicaDiv);
+        });
+    } catch (error) {
+        console.error('Erro ao buscar músicas aleatórias:', error);
+        alert('Não foi possível carregar as músicas. Tente novamente mais tarde.');
+    }
+}
+
+
 
 
 

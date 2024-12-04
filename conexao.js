@@ -56,10 +56,10 @@ app.post('/api/register', async (req, res) => {
 });
 
 app.use(session({
-    secret: 'seu_segredo_aqui',  // Defina um segredo seguro
-    resave: false,               // Não re-salvar sessão se não houver mudanças
-    saveUninitialized: true,     // Salvar sessões não inicializadas
-    cookie: { secure: false }    // Se for HTTPS, altere para `true`
+    secret: 'seu_segredo_aqui',  
+    resave: false,              
+    saveUninitialized: true,     
+    cookie: { secure: false }    
 }));
 
 const verificarToken = (req, res, next) => {
@@ -76,7 +76,7 @@ const verificarToken = (req, res, next) => {
 
         req.id_usuario = decoded.id;
 
-        // Adicione o console.log aqui
+    
         console.log(`ID do usuário extraído do token: ${req.id_usuario}`);
 
         next();
@@ -163,7 +163,7 @@ app.post('/api/login', async (req, res) => {
             return res.status(400).json({ error: "Senha incorreta" });
         }
 
-        // Salva o nome correto na sessão
+       
         console.log(`Id do nosso usuário: ${user.id}`)
         variavel_global_sessao = user.id;
 
@@ -183,10 +183,10 @@ app.get('/api/user', (req, res) => {
 });
 
 app.post('/criar-playlist', async (req, res) => {
-    const { titulo } = req.body;  // Obtém o título da playlist
-    const userName = req.session.id;  // Nome do usuário da sessão
+    const { titulo } = req.body;  
+    const userName = req.session.id;  
 
-    console.log('Sessão atual:', req.session);  // Verifique a sessão
+    console.log('Sessão atual:', req.session); 
 
     if (!titulo) {
         return res.status(400).json({ message: 'O título da playlist é obrigatório.' });
@@ -225,7 +225,7 @@ app.all('/puxar', async (req, res) => {
             return res.status(400).json({ error: 'Usuário não fornecido no POST' });
         }
 
-        // Salva o nome do usuário na variável global
+       
         nomeUsuarioGlobal = nomeUsuario;
         console.log(`Usuário salvo na variável global: ${nomeUsuarioGlobal}`);
 
@@ -233,7 +233,7 @@ app.all('/puxar', async (req, res) => {
     }
 
     if (req.method === 'GET') {
-        // Aqui, usamos a variável global diretamente
+       
         const id = nomeUsuarioGlobal
 
         try {
@@ -269,7 +269,8 @@ app.use('/Spotifly', express.static(path.join('C:', 'Users', 'marco_plateu', 'De
 
 app.get('/', (req, res) => {
     res.sendFile(path.join('C:', 'Users', 'marco_plateu', 'Desktop', 'DADADAD', 'Spotifly', 'html', 'inicio.html'));
-});
+})
+
 
 app.get('/musica-aleatoria', async (req, res) => {
     try {
@@ -284,6 +285,20 @@ app.get('/musica-aleatoria', async (req, res) => {
         res.status(500).json({ error: 'Erro ao buscar música' });
     }
 });
+app.get('/tres-musicas-aleatorias', async (req, res) => {
+    try {
+        const result = await pool.query("SELECT * FROM musicas ORDER BY RANDOM() LIMIT 3");
+        if (result.rows.length > 0) {
+            res.json(result.rows); // Retorna 3 músicas
+        } else {
+            res.status(404).json({ error: 'Nenhuma música encontrada' });
+        }
+    } catch (error) {
+        console.error("Erro ao buscar músicas:", error);
+        res.status(500).json({ error: 'Erro ao buscar músicas' });
+    }
+});
+
 
 process.on('SIGINT', async () => {
     console.log('Encerrando a conexão com o banco de dados...');
