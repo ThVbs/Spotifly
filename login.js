@@ -51,3 +51,7 @@ document.getElementById('cadastroForm').addEventListener('submit', async (e) => 
         console.error('Erro ao cadastrar:', error);
     }
 });
+
+function paginaInicial(){
+    window.location = 'inicio.html'
+}
