@@ -41,7 +41,7 @@ async function carregarPlaylist() {
             console.log(data[i].titulo);
             editar.innerHTML += `
                 <div class="mensagem3">
-                    <img class="reproduzir" src="imagens/icons8-reproduzir-50.png" alt="">
+                <img class="reproduzir" src="/Spotifly/imagens/icons8-reproduzir-50.png" alt="">
                     <button 
                         onclick="suaPlaylist(this)" 
                         data-id="${data[i].id}" 
@@ -242,23 +242,47 @@ async function mostrarMusicaAleatoria() {
         }
         const musica = await response.json();
 
-        // Se você tiver uma div específica para mostrar a música
+        // Seleciona o container para exibir a música
         const container = document.getElementById('musicas_');
         container.innerHTML = ''; // Limpa o conteúdo anterior
 
+        // Cria a estrutura da música
         const musicaDiv = document.createElement('div');
         musicaDiv.classList.add('musica');
         musicaDiv.innerHTML = `
-            <img class="tamanho_da_imagem" src="${musica.imagem_url}" alt="${musica.titulo}" class="imagem-musica" />
+            <img class="tamanho_da_imagem" src="${musica.imagem_url}" alt="${musica.titulo}" />
             <h2 class="titulo-musica">${musica.titulo}</h2>
             <h3 class="artista-musica">${musica.artista}</h3>
         `;
+        musicaDiv.addEventListener('click', () => renderDetalhesMusica(musica));
         container.appendChild(musicaDiv);
     } catch (error) {
         console.error('Erro ao buscar música aleatória:', error);
         alert('Não foi possível carregar a música. Tente novamente mais tarde.');
     }
 }
+
+function renderDetalhesMusica(musica) {
+    const container = document.getElementById('musicas_');
+    container.innerHTML = `
+        <div class="botao">
+            <button onclick="mostrarMusicaAleatoria()">
+                <img id="voltar" src="imagens/botao-voltar.png" alt="Voltar">
+            </button>
+        </div>
+        <div class="centerItems">
+            <div>
+                <img id="imagemMusica" src="${musica.imagem_url}" alt="${musica.titulo}">
+            </div>
+            <h1 id="tituloMusica">${musica.titulo}</h1>
+            <h3 id="artistaMusica">${musica.artista}</h3>
+            <audio controls>
+                <source id="audioMusica" src="" type="audio/mp3">
+            </audio>
+        </div>
+    `;
+}
+
 async function exibirMusicasAleatorias() {
     try {
         const response = await fetch('/tres-musicas-aleatorias');
