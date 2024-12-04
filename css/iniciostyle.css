@@ -858,17 +858,6 @@ p{
     filter: blur(10px);
 
 }
-.modal {
-    display: flex; /* Mantém o modal visível */
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%; /* Ocupa toda a largura da div pai */
-    height: 100%; /* Ocupa toda a altura da div pai */
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
-    align-items: center;
-    justify-content: center;
-}
 
 .modal-conteudo {
     background-color: rgb(52, 51, 51);
@@ -881,10 +870,15 @@ p{
     display: flex;
     justify-content: center;
     align-items: center;
-
+    margin-left: 12%;
 }
 #mensagem{
     color: white;
     width: 600px;
     font-size: xx-large;
+}
+.modalMensagens{
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }

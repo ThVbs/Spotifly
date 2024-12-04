@@ -24,6 +24,7 @@ let idGlobal
 
 
 
+
 async function carregarPlaylist() {
     try {
         const response = await fetch('/puxar');
@@ -54,6 +55,54 @@ async function carregarPlaylist() {
         console.error('Erro ao carregar a playlist:', error);
     }
 }
+
+function proibir(){
+    alert('Crie ou faça login em uma conta')
+}
+
+// Função para exibir as mensagens com efeito de digitação
+function exibirMensagens() {
+    const mensagens = [
+        "Bem-vindo ao Spotifly!",
+        "Crie sua conta e aproveite a experiência.",
+        "Descubra suas músicas favoritas.",
+        "Explore playlists personalizadas."
+    ];
+
+    let i = 0;  // Índice da frase atual
+    let j = 0;  // Índice da letra atual
+    const modalConteudo = document.getElementById('modalMensagens');
+    const mensagemElement = document.getElementById('mensagem');
+
+    // Função para digitar letra por letra
+    function digitarMensagem() {
+        if (j < mensagens[i].length) {
+            mensagemElement.innerHTML += mensagens[i].charAt(j);
+            j++;
+            setTimeout(digitarMensagem, 100); // Ajuste a velocidade da digitação aqui
+        } else {
+            i++;
+            if (i < mensagens.length) {
+                j = 0;
+                mensagemElement.innerHTML = ''; // Limpa a mensagem anterior
+                setTimeout(digitarMensagem, 2000); // Aguarda 2 segundos antes de mostrar a próxima frase
+            } else {
+                // Quando todas as mensagens foram exibidas, reinicia o processo
+                setTimeout(function() {
+                    i = 0;
+                    mensagemElement.innerHTML = ''; // Limpa a última mensagem
+                    digitarMensagem(); // Reinicia a digitação
+                }, 2000); // Atraso de 2 segundos antes de reiniciar
+            }
+        }
+    }
+
+    // Inicia o efeito de digitação
+    digitarMensagem();
+    
+    // Exibe o modal
+}
+
 
 
 

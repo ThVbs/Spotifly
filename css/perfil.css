@@ -104,7 +104,7 @@ footer {
 }
 
 .descricao_perfil p {
-    font-size: 17px;
+    font-size: 13px;
     color: #ffffff;
     display: flex;
     text-align: center;
@@ -131,7 +131,7 @@ section {
 
 /* Ajuste para o container_cima para que ele fique ao lado direito */
 .container_cima {
-    width: 60%;
+    width: 70%;
     background-color: #0f0f0f;
     display: flex;
     justify-content: space-between;
@@ -154,7 +154,7 @@ section {
 }
 
 .direita {
-    height: 80vh;
+    height: 90vh;
     width: 60%;
     background-color: #0f0f0f;
     padding: 20px;
@@ -174,9 +174,22 @@ section {
 }
 
 .frases_cima button {
-    font-size: 22px;
+    font-size: 15px;
     background-color: transparent;
     color: #ccc;
+    border: 2px solid #ccc;
+    border-radius: 12px; /* Borda arredondada */
+    padding: 10px 20px; /* Espessura e espaço interno */
+    cursor: pointer; /* Alterar o cursor para indicar clicável */
+    transition: all 0.3s ease; /* Transição suave */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+}
+
+.frases_cima button:hover {
+    background-color: #ccc; /* Alterar cor do fundo */
+    color: #333; /* Alterar cor do texto */
+    transform: scale(1.05); /* Leve aumento no hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* Sombra mais evidente */
 }
 
 .imagens img {

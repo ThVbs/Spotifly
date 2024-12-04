@@ -265,10 +265,17 @@ app.post('/api/logout', (req, res) => {
     });
 });
 
+<<<<<<< HEAD
 app.use('/Spotifly', express.static(path.join('C:', 'Users', 'USUARIO', 'Desktop', 'Conexao DB', 'Spotifly')));
 
 app.get('/', (req, res) => {
     res.sendFile(path.join('C:', 'Users', 'USUARIO', 'Desktop', 'Conexao DB', 'Spotifly', 'html', 'inicio.html'));
+=======
+app.use('/Spotifly', express.static(path.join('C:', 'Users', 'USUARIO', 'Desktop', 'projeto final', 'Spotifly')));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join('C:', 'Users', 'USUARIO', 'Desktop', 'projeto final', 'Spotifly', 'html', 'inicio.html'));
+>>>>>>> 82db23501c8e502ad5980d594f4385dfed331da4
 });
 
 app.get('/musica-aleatoria', async (req, res) => {

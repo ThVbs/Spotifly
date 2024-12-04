@@ -13,14 +13,14 @@
     <link rel="stylesheet" href="/Spotifly/css/iniciostyle.css">
 </head>
 
-<body onload="mostrarMensagem()">
+<body onload="exibirMensagens()">
     <div class="container">
         <div class="esquerda">
             <div class="inicio">
                 <h1 class="titulo-principal">Spotifly</h1>
-                <button><img class="home" src="/Spotifly/imgs/icons8-botão-home-50.png"></button>
+                <button onclick="proibir()"><img class="home" src="/Spotifly/imgs/icons8-botão-home-50.png"></button>
                 <a href="">
-                    <h2>Início</h2>
+                    <h2 onclick="proibir()">Início</h2>
                 </a>
                 <button  onclick="proibir()"><img class="home" src="/Spotifly/imagens/icons8-bússola-50.png"></button>
                     <h2 onclick="proibir()" class="explorar2">Explorar</h2>
@@ -61,4 +61,3 @@
 <script src="/Spotifly/inicioscript.js"></script>
 
 </html>
-<!-- Teste -->
