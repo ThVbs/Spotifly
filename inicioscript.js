@@ -69,10 +69,10 @@ async function suaPlaylist(element) {
         <div class="container3">
             <div class="capa-playlist">
                 <img class="nota-musical" src="imagens/nota-musical.jpg" alt="">
-                <h1 class="titulo-playlist">Nome da playlist</h1>
+                <h1 class="titulo-playlist">Playlist Midia</h1>
             </div>
             <div id="musicas-carregadas">
-                <h2>Suas Músicas</h2>
+                <h2 id="suas_musics">Suas Músicas</h2>
                 <ul>
                     ${musicas.map(musica => `<li style="color: white;">${musica.nome_musica}</li>`).join('')}
                 </ul>
@@ -81,12 +81,12 @@ async function suaPlaylist(element) {
                 <form id="pesquisaForm">
                     <div class="mensagem-add">
                         <input type="text" id="pesquisaInput" placeholder="Digite o título da música">
-                        <button type="submit">Pesquisar</button>
+                        <button type="submit" id="botao_pesquisa">Pesquisar</button>
                     </div>
                 </form>
             </div>
             <div id="resultados">
-                <h2>Resultados:</h2>
+                <h2 id="resultsAll">Resultados:</h2>
                 <ul id="listaResultados"></ul>
             </div>
         </div>

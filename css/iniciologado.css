@@ -164,7 +164,7 @@ input{
 }
 .musicas_{
     display: flex;
-    flex-direction: column;
+   
     height: 87vh;
     justify-content: center;
     align-items: center;
@@ -389,3 +389,68 @@ a{
     display: flex;
     flex-direction: row;
 }
+
+.titulo-playlist {
+    display: flex;
+    color: #ffffff; 
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-left: -10px;
+}
+
+.container3{
+    width: 100%;
+    height: 100%;
+}
+
+#suas_musics{
+    margin-top: 10vh;
+    padding: 5vh;
+    width: 200px;
+    margin-left: 7vh;
+}
+
+#musicas-carregadas{
+    width: 500px;
+}
+
+#pesquisaInput {
+    display: block; /* Alinha o input como um bloco */
+    margin-top: 10px; /* Ajuste o espaçamento superior, se necessário */
+    margin-right: auto; /* Remove o float */
+    margin-left: auto; /* Centraliza o input horizontalmente, se necessário */
+    width: 20vw;
+}
+
+#botao_pesquisa {
+    display: block; /* Deixa o botão em um bloco separado */
+    margin-top: 10px; /* Dá espaço entre o botão e o input */
+    margin-right: auto; /* Remove o float */
+    margin-left: auto; /* Centraliza o botão horizontalmente */
+    width: 20vw;
+}
+
+#botao_pesquisa button {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    text-align: center;
+    padding: 10px; /* Adiciona um preenchimento interno ao botão */
+    background-color: #900; /* Exemplo de cor */
+    color: #fff; /* Exemplo de cor do texto */
+    border: none; /* Remova borda padrão */
+    cursor: pointer; /* Mostra o cursor de clique */
+    font-size: 16px; /* Tamanho do texto */
+}
+
+#resultsAll{
+    display: flex;
+    float: right;
+    margin-right: 10vh;
+    margin-top: -15vh;
+}
+
+
+
