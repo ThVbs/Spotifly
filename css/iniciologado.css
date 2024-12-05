@@ -412,6 +412,7 @@ a{
 .container3{
     width: 100%;
     height: 100%;
+    /* margin: 20px; */
 }
 
 #suas_musics{
@@ -458,92 +459,26 @@ a{
     display: flex;
     float: right;
     margin-right: 10vh;
-    margin-top: -15vh;
-}
-.musica{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 30%;
+    margin-top: -16vh;
 }
 
-@keyframes aparecerDeBaixo {
-    0% {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+li{
+    margin-left: 10px;
+}
+.musica_escolhida{
+    height: 300px;
+    width: 450px;
 }
 
-.tamanho_da_imagem,
-.titulo-musica,
-.artista-musica {
-    animation: aparecerDeBaixo 1s ease-in-out;
-    animation-fill-mode: both; 
-}
-.saudacao {
-    height: 10%;
-    width: 100%;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
+#tituloMusica{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-.musicas_aleatorias {
-    height: 90%;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between; /* Espaça as músicas igualmente */
-    gap: 20px; /* Adiciona um espaçamento entre as músicas */
+#artistaMusica{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-.foto_e_titulo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 33%; /* Garante que cada item tenha 33% da largura */
-    opacity: 0; /* Inicialmente invisível */
-    transform: translateY(50px); /* Posiciona as músicas abaixo */
-    animation: aparecerDeBaixo 1s ease-in-out forwards;
-}
 
-.foto_aleatoria {
-    height: 200px;
-    width: 200px;
-}
-
-@keyframes aparecerDeBaixo {
-    0% {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Aplica animação com atraso para cada música */
-.musicas_aleatorias .foto_e_titulo:nth-child(1) {
-    animation-delay: 0.3s; /* Primeira música aparece após 0.3 segundos */
-}
-
-.musicas_aleatorias .foto_e_titulo:nth-child(2) {
-    animation-delay: 0.6s; /* Segunda música aparece após 0.6 segundos */
-}
-
-.musicas_aleatorias .foto_e_titulo:nth-child(3) {
-    animation-delay: 0.9s; /* Terceira música aparece após 0.9 segundos */
-}
-.tamanho{
-    width: 200px;
-    font-size: small;
-}
 
