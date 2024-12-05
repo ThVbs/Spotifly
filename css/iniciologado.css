@@ -492,7 +492,6 @@ li{
     float: right;
     margin-right: 1vh;
     margin-top: -28vh;
-    overflow-y: auto;
 }
 
 #mnhsMusiquinhas{
@@ -502,7 +501,4 @@ li{
 
 .mensagem-add{
     margin-right: 7vh;
-    position: sticky;
-    top: 0;
-    z-index: 10;
 }
