@@ -479,6 +479,33 @@ li{
     color: white;
     font-family: Arial, Helvetica, sans-serif;
 }
+.musica{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+}
+button.next{
+    height: 50px;
+    width: 60px;
+}
+button.play-pause{
+    height: 50px;
+    width: 60px;
+
+}
+#play-pause{
+    height: 30px;
+    width: 30px;
+}
+#next{
+    height: 30px;
+    width: 30px;
+}
+#bemVindo{
+    margin-left: 65%;
+}
 
 
 

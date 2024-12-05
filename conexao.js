@@ -4,7 +4,7 @@ const { Client } = require('pg');
 const bcrypt = require('bcrypt');
 const app = express();
 const session = require('express-session');
-const port = 3001;
+const port = 3000;
 const path = require('path');
 const jwt = require('jsonwebtoken');
 const { reverse } = require('dns');
@@ -17,9 +17,9 @@ var variavel_global_sessao
 const pool = new Client({
     user: "postgres",
     host: "localhost",
-    database: "Spotfly",
-    password: "luccas3007",
-    port: 5433,
+    database: "Spotifly",
+    password: "postgres",
+    port: 5432,
 });
 
 pool.connect()
@@ -267,12 +267,12 @@ app.post('/api/logout', (req, res) => {
 });
 
 
-app.use('/Spotifly', express.static(path.join('C:', 'Users', 'luccapp', 'Desktop', 'copia', 'Spotifly')));
+app.use('/Spotifly', express.static(path.join('C:', 'Users', 'luccas_pereira', 'Desktop', 'conexao BD', 'Spotifly')));
 
 app.use('/audios', express.static(path.join(__dirname, 'audios')));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join('C:', 'Users', 'luccapp', 'Desktop', 'copia', 'Spotifly', 'html', 'inicio.html'));
+    res.sendFile(path.join('C:', 'Users', 'luccas_pereira', 'Desktop', 'conexao BD', 'Spotifly', 'html', 'inicio.html'));
 });
 
 app.get('/musica-aleatoria', async (req, res) => {
