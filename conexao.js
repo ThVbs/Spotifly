@@ -4,7 +4,7 @@ const { Client } = require('pg');
 const bcrypt = require('bcrypt');
 const app = express();
 const session = require('express-session');
-const port = 3000;
+const port = 3001;
 const path = require('path');
 const jwt = require('jsonwebtoken');
 const { reverse } = require('dns');
@@ -38,7 +38,7 @@ app.post('/api/register', async (req, res) => {
     }
 
     try {
-        const existingUserQuery = 'SELECT * FROM usuario WHERE usr = $1 OR email = $2';
+        const existingUserQuery = 'SELECT * FROM elize WHERE usr = $1 OR email = $2';
         const existingUserResult = await pool.query(existingUserQuery, [usr, email]);
 
         if (existingUserResult.rowCount > 0) {
@@ -46,7 +46,7 @@ app.post('/api/register', async (req, res) => {
         }
 
         const hashedPassword = await bcrypt.hash(senha, 10);
-        const queryText = 'INSERT INTO usuario (usr, email, senha) VALUES ($1, $2, $3) RETURNING *';
+        const queryText = 'INSERT INTO elize (usr, email, senha) VALUES ($1, $2, $3) RETURNING *';
         const result = await pool.query(queryText, [usr, email, hashedPassword]);
 
         res.json(result.rows[0]);
@@ -265,10 +265,10 @@ app.post('/api/logout', (req, res) => {
     });
 });
 
-app.use('/Spotifly', express.static(path.join('C:', 'Users', 'USUARIO', 'Desktop', 'Conexao DB', 'Spotifly')));
+app.use('/Spotifly', express.static(path.join('C:', 'Users', 'elize', 'Desktop', 'Spotifly DB', 'Spotifly')));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join('C:', 'Users', 'USUARIO', 'Desktop', 'Conexao DB', 'Spotifly', 'html', 'inicio.html'));
+    res.sendFile(path.join('C:', 'Users', 'elize', 'Desktop', 'Spotifly DB', 'Spotifly', 'html', 'inicio.html'));
 });
 
 app.get('/musica-aleatoria', async (req, res) => {

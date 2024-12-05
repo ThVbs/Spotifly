@@ -397,7 +397,7 @@ a{
     text-align: center;
     align-items: center;
     justify-content: center;
-    margin-left: -10px;
+    margin-left: -2vw;
 }
 
 .container3{
@@ -413,7 +413,7 @@ a{
 }
 
 #musicas-carregadas{
-    width: 500px;
+    width: 400px;
 }
 
 #pesquisaInput {
@@ -448,9 +448,34 @@ a{
 #resultsAll{
     display: flex;
     float: right;
-    margin-right: 10vh;
-    margin-top: -15vh;
+    margin-right: 20vh;
+    margin-top: -36.5vh;
+    
 }
 
+li{
+    display: block;
+    list-style: none;
+    width: 200px
+}
 
+#resultadosUl{
+    display: flex;
+    width: 20vw;
+    float: right;
+    margin-right: 1vh;
+    margin-top: -28vh;
+    overflow-y: auto;
+}
 
+#mnhsMusiquinhas{
+    margin-left: 15vh;
+    width: 200px;
+}
+
+.mensagem-add{
+    margin-right: 7vh;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}

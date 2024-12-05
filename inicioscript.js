@@ -123,7 +123,9 @@ async function suaPlaylist(element) {
             <div id="musicas-carregadas">
                 <h2 id="suas_musics">Suas Músicas</h2>
                 <ul>
-                    ${musicas.map(musica => `<li style="color: white;">${musica.nome_musica}</li>`).join('')}
+                    ${musicas.map(musica =>
+                         `<div id="mnhsMusiquinhas"><li style="color: white;">${musica.nome_musica}
+                    </li></div>`).join('')}
                 </ul>
             </div>
             <div class="corpo-playlist" id="corpo-playlist">
@@ -136,7 +138,9 @@ async function suaPlaylist(element) {
             </div>
             <div id="resultados">
                 <h2 id="resultsAll">Resultados:</h2>
-                <ul id="listaResultados"></ul>
+                <div id="resultadosUl">
+                     <ul id="listaResultados"></ul>
+                </div>
             </div>
         </div>
     `;
