@@ -11,8 +11,8 @@
         <div class="esquerda">
             <div class="inicio">
                 <h1 class="titulo-principal">Spotifly</h1>
-                <button><img class="home" src="../imagens/icons8-botão-home-50.png"></button> 
-                <a href=""><h2 >Início</h2></a>
+                <button onclick="carregarTresMusicasAleatorias()"><img class="home" src="../imagens/icons8-botão-home-50.png"></button> 
+                <a href=""><h2 onclick="carregarTresMusicasAleatorias()">Início</h2></a>
                 <button onclick="mostrarMusicaAleatoria()"><img class="home" src="../imagens/explorar.png"></button>
                 <h2 onclick="mostrarMusicaAleatoria()" class="explorar2">Explorar</h2>
             </div>
@@ -37,14 +37,17 @@
                         <img class="foto_usuario" src="../imagens/usuario.png" alt="Usuário" onclick="toggleDropdown()">
                         <div id="dropdown-content" class="dropdown-content">
                             <a href="perfil.html">Visualizar Perfil</a>
-                            <a onclick="logout()">Sair</a>
+                            <a onclick="logout()" >Sair</a>
                         </div>
                     </div>
                     <button class="username" id="welcome"></button>
                 </div>
             </div>
             <div class="musicas_" id="musicas_">
-                
+                    <h1 id="bemVindo"></h1>
+                    <h2>Clique em explorar e descubra novas músicas!</h2>
+                    PRECISA ADICIONAR UMA COLUNA NO BANCO DE DADO COM O NOME DE 
+                    audio_url E O INSERT PRECISA SER ASSIM "/audios/NOMEDAMUSICAAQUI.mp3"
 
             </div>
         </div>
@@ -52,8 +55,9 @@
     <script src="/Spotifly/inicioscript.js"></script>
     <script>
         document.getElementById('welcome').textContent = `${sessionStorage.getItem('userName')}`;
+        document.getElementById('bemVindo').textContent = `Seja bem vindo, ${sessionStorage.getItem('userName')}`;
 
-        document.getElementById('bemVindo').textContent = `Sja bem vindo, ${sessionStorage.getItem('userName')}`;
+        
 
 async function carregarPlaylistPost(){
     const usr = document.getElementById('welcome').textContent;
@@ -69,7 +73,7 @@ async function carregarPlaylistPost(){
 
    
 }
-carregarTresMusicasAleatorias()
+
     </script>
 </body>
 </html>

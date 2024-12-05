@@ -41,7 +41,7 @@ async function carregarPlaylist() {
             console.log(data[i].titulo);
             editar.innerHTML += `
                 <div class="mensagem3">
-                    <img class="reproduzir" src="imagens/icons8-reproduzir-50.png" alt="">
+                    <img class="reproduzir" src="/Spotifly/imagens/icons8-reproduzir-50.png" alt="">
                     <button 
                         onclick="suaPlaylist(this)" 
                         data-id="${data[i].id}" 
@@ -233,6 +233,8 @@ async function pesquisarMusicas(idGlobal) {
         console.error('Erro ao buscar resultados:', erro);
     }
 }
+let ultimaMusica = null;
+
 
 async function mostrarMusicaAleatoria() {
     try {
@@ -242,25 +244,165 @@ async function mostrarMusicaAleatoria() {
         }
         const musica = await response.json();
 
+        // Armazena a última música antes de gerar uma nova
+        ultimaMusica = musica;
+
         // Seleciona o container para exibir a música
         const container = document.getElementById('musicas_');
         container.innerHTML = ''; // Limpa o conteúdo anterior
 
-        // Cria a estrutura da música
+        // Cria a estrutura da música com os botões de controle
         const musicaDiv = document.createElement('div');
         musicaDiv.classList.add('musica');
         musicaDiv.innerHTML = `
-            <img class="tamanho_da_imagem" src="${musica.imagem_url}" alt="${musica.titulo}" class="imagem-musica" />
-            <h2 class="titulo-musica">${musica.titulo}</h2>
-            <h3 class="artista-musica">${musica.artista}</h3>
+            <img class="tamanho_da_imagem" src="${musica.imagem_url}" alt="${musica.titulo}" />
+            <h2>${musica.titulo}</h2>
+            <h3>${musica.artista}</h3>
+            <audio class="audio-player" src="${musica.audio_url}" preload="none"></audio>
+            <div class="player-controls">
+                <button class="prev" onclick="voltarParaUltimaMusica()">Voltar</button>
+                <button class="play-pause">Play</button>
+                <button class="next" onclick="mostrarMusicaAleatoria()">Próxima</button>
+            </div>
+            <span class="time">00:00</span>
+            <div class="player-progress">
+                <div class="progress-bar"></div>
+            </div>
         `;
-        musicaDiv.addEventListener('click', () => renderDetalhesMusica(musica));
+
+        // Reproduzir o áudio ao clicar na música
+        const audioPlayer = musicaDiv.querySelector('.audio-player');
+        const playPauseButton = musicaDiv.querySelector('.play-pause');
+        const timeDisplay = musicaDiv.querySelector('.time');
+        const progressBar = musicaDiv.querySelector('.progress-bar');
+
+        // Atualizar tempo da música
+        audioPlayer.addEventListener('timeupdate', () => {
+            const currentTime = audioPlayer.currentTime;
+            const duration = audioPlayer.duration;
+            const progress = (currentTime / duration) * 100;
+
+            // Atualiza o tempo exibido
+            const minutes = Math.floor(currentTime / 60);
+            const seconds = Math.floor(currentTime % 60);
+            timeDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+            // Atualiza a barra de progresso
+            progressBar.style.width = `${progress}%`;
+        });
+
+        // Controlar play/pause
+        playPauseButton.addEventListener('click', () => {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                playPauseButton.textContent = 'Pause';
+            } else {
+                audioPlayer.pause();
+                playPauseButton.textContent = 'Play';
+            }
+        });
+
         container.appendChild(musicaDiv);
     } catch (error) {
         console.error('Erro ao buscar música aleatória:', error);
         alert('Não foi possível carregar a música. Tente novamente mais tarde.');
     }
 }
+
+function voltarParaUltimaMusica() {
+    if (ultimaMusica) {
+        mostrarMusicaComDados(ultimaMusica);
+    } else {
+        alert('Não há música anterior.');
+    }
+}
+function mostrarMusicaComDados(musica) {
+    const container = document.getElementById('musicas_');
+    container.innerHTML = ''; // Limpa o conteúdo anterior
+
+    const musicaDiv = document.createElement('div');
+    musicaDiv.classList.add('musica');
+    musicaDiv.innerHTML = `
+        <img class="tamanho_da_imagem" src="${musica.imagem_url}" alt="${musica.titulo}" />
+        <h2>${musica.titulo}</h2>
+        <h3>${musica.artista}</h3>
+        <audio class="audio-player" src="${musica.audio_url}" preload="none"></audio>
+        <div class="player-controls">
+            <button class="play-pause">Play</button>
+            <span class="time">00:00</span>
+        </div>
+        <div class="player-progress">
+            <div class="progress-bar"></div>
+        </div>
+    `;
+
+    // Reproduzir o áudio ao clicar na música
+    const audioPlayer = musicaDiv.querySelector('.audio-player');
+    const playPauseButton = musicaDiv.querySelector('.play-pause');
+    const timeDisplay = musicaDiv.querySelector('.time');
+    const progressBar = musicaDiv.querySelector('.progress-bar');
+    const progressContainer = musicaDiv.querySelector('.player-progress');
+
+    // Atualizar tempo da música
+    audioPlayer.addEventListener('timeupdate', () => {
+        const currentTime = audioPlayer.currentTime;
+        const duration = audioPlayer.duration;
+        const progress = (currentTime / duration) * 100;
+
+        // Atualiza o tempo exibido
+        const minutes = Math.floor(currentTime / 60);
+        const seconds = Math.floor(currentTime % 60);
+        timeDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+        // Atualiza a barra de progresso
+        progressBar.style.width = `${progress}%`;
+    });
+
+    // Controlar play/pause
+    playPauseButton.addEventListener('click', () => {
+        if (audioPlayer.paused) {
+            audioPlayer.play();
+            playPauseButton.textContent = 'Pause';
+        } else {
+            audioPlayer.pause();
+            playPauseButton.textContent = 'Play';
+        }
+    });
+
+    container.appendChild(musicaDiv);
+}
+
+
+async function carregarTresMusicasAleatorias() {
+    try {
+        const response = await fetch('/inicio-musicas-aleatorias');
+        if (!response.ok) {
+            throw new Error(`Erro na requisição: ${response.status}`);
+        }
+        const musicas = await response.json();
+
+        // Seleciona o container para exibir as músicas
+        const container = document.getElementById('musicas_');
+        container.innerHTML = ''; // Limpa o conteúdo anterior
+
+        // Itera sobre as músicas e cria a estrutura para cada uma
+        musicas.forEach(musica => {
+            const musicaDiv = document.createElement('div');
+            musicaDiv.classList.add('musica');
+            musicaDiv.innerHTML = `
+                <img class="tamanho_da_imagem" src="${musica.imagem_url}" alt="${musica.titulo}" class="imagem-musica" />
+                <h2 class="titulo-musica">${musica.titulo}</h2>
+                <h3 class="artista-musica">${musica.artista}</h3>
+            `;
+            musicaDiv.addEventListener('click', () => renderDetalhesMusica(musica));
+            container.appendChild(musicaDiv);
+        });
+    } catch (error) {
+        console.error('Erro ao buscar músicas aleatórias:', error);
+        alert('Não foi possível carregar as músicas. Tente novamente mais tarde.');
+    }
+}
+
 
 
 

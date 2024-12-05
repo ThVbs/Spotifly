@@ -121,6 +121,7 @@ app.post('/adicionar', async (req, res) => {
 });
 
 
+
 app.post('/playlist/musicas', async (req, res) => {
     const { id_playlist } = req.body;
 
@@ -267,11 +268,29 @@ app.post('/api/logout', (req, res) => {
 
 app.use('/Spotifly', express.static(path.join('C:', 'Users', 'luccapp', 'Desktop', 'copia', 'Spotifly')));
 
+app.use('/audios', express.static(path.join(__dirname, 'audios')));
+
 app.get('/', (req, res) => {
     res.sendFile(path.join('C:', 'Users', 'luccapp', 'Desktop', 'copia', 'Spotifly', 'html', 'inicio.html'));
 });
 
 app.get('/musica-aleatoria', async (req, res) => {
+    try {
+        const result = await pool.query(
+            "SELECT titulo, artista, imagem_url, audio_url FROM musicas ORDER BY RANDOM() LIMIT 1"
+        );
+        if (result.rows.length > 0) {
+            res.json(result.rows[0]);
+        } else {
+            res.status(404).json({ error: 'Nenhuma música encontrada' });
+        }
+    } catch (error) {
+        console.error("Erro ao buscar música:", error);
+        res.status(500).json({ error: 'Erro ao buscar música' });
+    }
+});
+
+app.get('/tres-musicas-aleatorias', async (req, res) => {
     try {
         const result = await pool.query("SELECT imagem_url, titulo, artista FROM musicas ORDER BY RANDOM() LIMIT 1");
         if (result.rows.length > 0) {
