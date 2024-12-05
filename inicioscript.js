@@ -255,7 +255,6 @@ async function mostrarMusicaAleatoria() {
         const container = document.getElementById('musicas_');
         container.innerHTML = ''; // Limpa o conteúdo anterior
 
-        // Cria a estrutura da música com os botões de controle
         const musicaDiv = document.createElement('div');
         musicaDiv.classList.add('musica');
         musicaDiv.innerHTML = `
@@ -264,9 +263,8 @@ async function mostrarMusicaAleatoria() {
             <h3>${musica.artista}</h3>
             <audio class="audio-player" src="${musica.audio_url}" preload="none"></audio>
             <div class="player-controls">
-                <button class="prev" onclick="voltarParaUltimaMusica()">Voltar</button>
-                <button class="play-pause">Play</button>
-                <button class="next" onclick="mostrarMusicaAleatoria()">Próxima</button>
+                <button class="play-pause"><img id="play-pause" src="/Spotifly/imgs/icons8-reproduzir-50.png" alt=""></button>
+                <button class="next" onclick="mostrarMusicaAleatoria()"><img id="next" src="/Spotifly/imgs/icons8-duplo-para-a-direita-50.png" alt=""></button>
             </div>
             <span class="time">00:00</span>
             <div class="player-progress">

@@ -267,12 +267,12 @@ app.post('/api/logout', (req, res) => {
 });
 
 
-app.use('/Spotifly', express.static(path.join('C:', 'Users', 'marco_plateu', 'Desktop', 'DADADAD', 'Spotifly')));
+app.use('/Spotifly', express.static(path.join('C:', 'Users', 'luccapp', 'Desktop', 'copia', 'Spotifly')));
 
 app.use('/audios', express.static(path.join(__dirname, 'audios')));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join('C:', 'Users', 'marco_plateu', 'Desktop', 'DADADAD', 'Spotifly', 'html', 'inicio.html'));
+    res.sendFile(path.join('C:', 'Users', 'luccapp', 'Desktop', 'copia', 'Spotifly', 'html', 'inicio.html'));
 });
 
 app.get('/musica-aleatoria', async (req, res) => {
