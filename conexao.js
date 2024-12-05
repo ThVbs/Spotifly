@@ -4,7 +4,7 @@ const { Client } = require('pg');
 const bcrypt = require('bcrypt');
 const app = express();
 const session = require('express-session');
-const port = 3001;
+const port = 3000;
 const path = require('path');
 const jwt = require('jsonwebtoken');
 const { reverse } = require('dns');
@@ -265,10 +265,10 @@ app.post('/api/logout', (req, res) => {
     });
 });
 
-app.use('/Spotifly', express.static(path.join('C:', 'Users', 'USUARIO', 'Desktop', 'Conexao DB', 'Spotifly')));
+app.use('/Spotifly', express.static(path.join('C:', 'Users', 'luccapp', 'Desktop', 'copia', 'Spotifly')));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join('C:', 'Users', 'USUARIO', 'Desktop', 'Conexao DB', 'Spotifly', 'html', 'inicio.html'));
+    res.sendFile(path.join('C:', 'Users', 'luccapp', 'Desktop', 'copia', 'Spotifly', 'html', 'inicio.html'));
 });
 
 app.get('/musica-aleatoria', async (req, res) => {
