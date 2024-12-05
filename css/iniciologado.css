@@ -164,7 +164,7 @@ input{
 }
 .musicas_{
     display: flex;
-   
+   flex-direction: column;
     height: 87vh;
     justify-content: center;
     align-items: center;
@@ -175,7 +175,10 @@ input{
 }
 .titulo-musica{
     height: 15%;
+    width: 140px;
     text-align: center;
+    
+
     
 }
 .mais-ouvidas{
@@ -302,6 +305,12 @@ h3{
     justify-content: center;
     align-items: center;
 }
+.musicas_.musicas_{
+    display: flex;
+    height: 80%;
+    width: 100%;
+    flex-direction: column;
+}
 .capa_aleatoria{
     width: 250px;
     height: 250px;
@@ -403,6 +412,7 @@ a{
 .container3{
     width: 100%;
     height: 100%;
+    /* margin: 20px; */
 }
 
 #suas_musics{
@@ -448,9 +458,26 @@ a{
 #resultsAll{
     display: flex;
     float: right;
-    margin-right: 20vh;
-    margin-top: -36.5vh;
-    
+    margin-right: 10vh;
+    margin-top: -16vh;
+}
+
+li{
+    margin-left: 10px;
+}
+.musica_escolhida{
+    height: 300px;
+    width: 450px;
+}
+
+#tituloMusica{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#artistaMusica{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 li{

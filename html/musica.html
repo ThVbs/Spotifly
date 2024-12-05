@@ -4,27 +4,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nome da Musica</title>
+    <title>Detalhes da Música</title>
     <link rel="stylesheet" href="../css/musicastyle.css">
 </head>
 
 <body>
 
     <div class="container">
-        <div class="botao"> <a href="inicio.html"><img id="voltar" src="imagens/botao-voltar.png" alt=""></a></div>
+        <div class="botao_musica_escolhida">
+            <a href="iniciologado.html"><img id="voltar" class="musica_escolhida" src="imagens/botao-voltar.png" alt="Voltar"></a>
+        </div>
         <div class="centerItems">
-           
-            <div><img
-                    src="https://i.ytimg.com/vi/d-6DzlhlBxA/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBtqtdaNx3H1mbjdgGnh9CIgKBMaQ"
-                    alt="imgMusica"></div>
-            <h1>Isso é sério</h1>
-            <h3>Matuê</h3>
+            <div>
+                <img id="imagemMusica" src="" alt="Imagem da Música">
+            </div>
+            <h1 id="tituloMusica"></h1>
+            <h3 id="artistaMusica"></h3>
             <audio controls>
-                <source src="/musicas/matueissoeserio.mp3" type="audio/mp3" />
-
+                <source id="audioMusica" src="" type="audio/mp3">
             </audio>
         </div>
     </div>
+
+    <script>
+        // Função para carregar os parâmetros da URL
+        function carregarDetalhesDaMusica() {
+            const params = new URLSearchParams(window.location.search);
+            const titulo = params.get('titulo');
+            const artista = params.get('artista');
+            const imagemUrl = params.get('imagem_url');
+
+            // Preenche os elementos na página
+            document.getElementById('tituloMusica').textContent = titulo || 'Título não encontrado';
+            document.getElementById('artistaMusica').textContent = artista || 'Artista não encontrado';
+            document.getElementById('imagemMusica').src = imagemUrl || 'imagens/imagem_padrao.png';
+        }
+
+        // Chama a função ao carregar a página
+        carregarDetalhesDaMusica();
+    </script>
 </body>
 
 </html>

@@ -17,9 +17,9 @@ var variavel_global_sessao
 const pool = new Client({
     user: "postgres",
     host: "localhost",
-    database: "Spotifly",
-    password: "postgres",
-    port: 5432,
+    database: "Spotfly",
+    password: "luccas3007",
+    port: 5433,
 });
 
 pool.connect()
@@ -56,10 +56,10 @@ app.post('/api/register', async (req, res) => {
 });
 
 app.use(session({
-    secret: 'seu_segredo_aqui',  // Defina um segredo seguro
-    resave: false,               // Não re-salvar sessão se não houver mudanças
-    saveUninitialized: true,     // Salvar sessões não inicializadas
-    cookie: { secure: false }    // Se for HTTPS, altere para `true`
+    secret: 'seu_segredo_aqui',  
+    resave: false,              
+    saveUninitialized: true,     
+    cookie: { secure: false }    
 }));
 
 const verificarToken = (req, res, next) => {
@@ -76,7 +76,7 @@ const verificarToken = (req, res, next) => {
 
         req.id_usuario = decoded.id;
 
-        // Adicione o console.log aqui
+    
         console.log(`ID do usuário extraído do token: ${req.id_usuario}`);
 
         next();
@@ -163,7 +163,7 @@ app.post('/api/login', async (req, res) => {
             return res.status(400).json({ error: "Senha incorreta" });
         }
 
-        // Salva o nome correto na sessão
+       
         console.log(`Id do nosso usuário: ${user.id}`)
         variavel_global_sessao = user.id;
 
@@ -183,10 +183,10 @@ app.get('/api/user', (req, res) => {
 });
 
 app.post('/criar-playlist', async (req, res) => {
-    const { titulo } = req.body;  // Obtém o título da playlist
-    const userName = req.session.id;  // Nome do usuário da sessão
+    const { titulo } = req.body;  
+    const userName = req.session.id;  
 
-    console.log('Sessão atual:', req.session);  // Verifique a sessão
+    console.log('Sessão atual:', req.session); 
 
     if (!titulo) {
         return res.status(400).json({ message: 'O título da playlist é obrigatório.' });
@@ -225,7 +225,7 @@ app.all('/puxar', async (req, res) => {
             return res.status(400).json({ error: 'Usuário não fornecido no POST' });
         }
 
-        // Salva o nome do usuário na variável global
+       
         nomeUsuarioGlobal = nomeUsuario;
         console.log(`Usuário salvo na variável global: ${nomeUsuarioGlobal}`);
 
@@ -233,7 +233,7 @@ app.all('/puxar', async (req, res) => {
     }
 
     if (req.method === 'GET') {
-        // Aqui, usamos a variável global diretamente
+       
         const id = nomeUsuarioGlobal
 
         try {
@@ -265,10 +265,11 @@ app.post('/api/logout', (req, res) => {
     });
 });
 
-app.use('/Spotifly', express.static(path.join('C:', 'Users', 'elize', 'Desktop', 'Spotifly DB', 'Spotifly')));
+
+app.use('/Spotifly', express.static(path.join('C:', 'Users', 'luccapp', 'Desktop', 'copia', 'Spotifly')));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join('C:', 'Users', 'elize', 'Desktop', 'Spotifly DB', 'Spotifly', 'html', 'inicio.html'));
+    res.sendFile(path.join('C:', 'Users', 'luccapp', 'Desktop', 'copia', 'Spotifly', 'html', 'inicio.html'));
 });
 
 app.get('/musica-aleatoria', async (req, res) => {

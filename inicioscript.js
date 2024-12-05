@@ -246,10 +246,11 @@ async function mostrarMusicaAleatoria() {
         }
         const musica = await response.json();
 
-        // Se você tiver uma div específica para mostrar a música
+        // Seleciona o container para exibir a música
         const container = document.getElementById('musicas_');
         container.innerHTML = ''; // Limpa o conteúdo anterior
 
+        // Cria a estrutura da música
         const musicaDiv = document.createElement('div');
         musicaDiv.classList.add('musica');
         musicaDiv.innerHTML = `
@@ -257,6 +258,7 @@ async function mostrarMusicaAleatoria() {
             <h2 class="titulo-musica">${musica.titulo}</h2>
             <h3 class="artista-musica">${musica.artista}</h3>
         `;
+        musicaDiv.addEventListener('click', () => renderDetalhesMusica(musica));
         container.appendChild(musicaDiv);
     } catch (error) {
         console.error('Erro ao buscar música aleatória:', error);

@@ -53,7 +53,7 @@
     <script>
         document.getElementById('welcome').textContent = `${sessionStorage.getItem('userName')}`;
 
-        document.getElementById('welcome').textContent = ` ${sessionStorage.getItem('userName')}`;
+        document.getElementById('bemVindo').textContent = `Sja bem vindo, ${sessionStorage.getItem('userName')}`;
 
 async function carregarPlaylistPost(){
     const usr = document.getElementById('welcome').textContent;
@@ -69,6 +69,7 @@ async function carregarPlaylistPost(){
 
    
 }
+carregarTresMusicasAleatorias()
     </script>
 </body>
 </html>
