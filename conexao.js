@@ -17,9 +17,9 @@ var variavel_global_sessao
 const pool = new Client({
     user: "postgres",
     host: "localhost",
-    database: "Spotifly",
-    password: "postgres",
-    port: 5432,
+    database: "Spotfly",
+    password: "luccas3007",
+    port: 5433,
 });
 
 pool.connect()
@@ -265,10 +265,10 @@ app.post('/api/logout', (req, res) => {
     });
 });
 
-app.use('/Spotifly', express.static(path.join('C:', 'Users', 'USUARIO', 'Desktop', 'Conexao DB', 'Spotifly')));
+app.use('/Spotifly', express.static(path.join('C:', 'Users', 'luccapp', 'Desktop', 'copia', 'Spotifly')));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join('C:', 'Users', 'USUARIO', 'Desktop', 'Conexao DB', 'Spotifly', 'html', 'inicio.html'));
+    res.sendFile(path.join('C:', 'Users', 'luccapp', 'Desktop', 'copia', 'Spotifly', 'html', 'inicio.html'));
 });
 
 app.get('/musica-aleatoria', async (req, res) => {
@@ -284,6 +284,21 @@ app.get('/musica-aleatoria', async (req, res) => {
         res.status(500).json({ error: 'Erro ao buscar música' });
     }
 });
+
+app.get('/tres-musicas-aleatorias', async (req, res) => {
+    try {
+        const result = await pool.query("SELECT imagem_url, titulo, artista FROM musicas ORDER BY RANDOM() LIMIT 3");
+        if (result.rows.length > 0) {
+            res.json(result.rows); // Retorna as 3 músicas
+        } else {
+            res.status(404).json({ error: 'Nenhuma música encontrada' });
+        }
+    } catch (error) {
+        console.error("Erro ao buscar músicas:", error);
+        res.status(500).json({ error: 'Erro ao buscar músicas' });
+    }
+});
+
 
 process.on('SIGINT', async () => {
     console.log('Encerrando a conexão com o banco de dados...');

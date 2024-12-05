@@ -41,7 +41,7 @@ async function carregarPlaylist() {
             console.log(data[i].titulo);
             editar.innerHTML += `
                 <div class="mensagem3">
-                    <img class="reproduzir" src="imagens/icons8-reproduzir-50.png" alt="">
+                    <img class="reproduzir" src="/Spotifly/imagens/icons8-reproduzir-50.png" alt="">
                     <button 
                         onclick="suaPlaylist(this)" 
                         data-id="${data[i].id}" 
@@ -249,9 +249,11 @@ async function mostrarMusicaAleatoria() {
         const musicaDiv = document.createElement('div');
         musicaDiv.classList.add('musica');
         musicaDiv.innerHTML = `
-            <img class="tamanho_da_imagem" src="${musica.imagem_url}" alt="${musica.titulo}" class="imagem-musica" />
-            <h2 class="titulo-musica">${musica.titulo}</h2>
-            <h3 class="artista-musica">${musica.artista}</h3>
+            <div>
+    <img class="tamanho_da_imagem" src="${musica.imagem_url}" alt="${musica.titulo}" class="imagem-musica" />
+    <h2 class="titulo-musica">${musica.titulo}</h2>
+    <h3 class="artista-musica">${musica.artista}</h3>
+</div>
         `;
         container.appendChild(musicaDiv);
     } catch (error) {
@@ -259,6 +261,52 @@ async function mostrarMusicaAleatoria() {
         alert('Não foi possível carregar a música. Tente novamente mais tarde.');
     }
 }
+
+async function carregarTresMusicasAleatorias() {
+    try {
+        const response = await fetch('/tres-musicas-aleatorias');
+        if (!response.ok) {
+            throw new Error(`Erro na requisição: ${response.status}`);
+        }
+        const musicas = await response.json();
+
+        // Local onde as músicas serão exibidas
+        const container = document.getElementById('musicas_');
+        container.innerHTML = ''; // Limpa o conteúdo anterior
+
+        // Adiciona a saudação
+        const saudacaoDiv = document.createElement('div');
+        saudacaoDiv.classList.add('saudacao');
+        saudacaoDiv.innerHTML = `
+            <h1 id="bemVindo">Bem-vindo, ${sessionStorage.getItem('userName')}!</h1>
+            <br><br>
+            <h2 style="margin-left: 60px;">Comece a explorar novas músicas agora</h2>
+        `;
+        container.appendChild(saudacaoDiv);
+
+        // Adiciona cada música ao container
+        const musicasAleatoriasDiv = document.createElement('div');
+        musicasAleatoriasDiv.classList.add('musicas_aleatorias');
+
+        musicas.forEach(musica => {
+            const musicaDiv = document.createElement('div');
+            musicaDiv.classList.add('foto_e_titulo');
+            musicaDiv.innerHTML = `
+                <img class="foto_aleatoria" src="${musica.imagem_url}" alt="${musica.titulo}" />
+                <h3 class="tamanho">${musica.titulo}</h3>
+                <h3 class="tamanho">${musica.artista}</h3>
+            `;
+            musicasAleatoriasDiv.appendChild(musicaDiv);
+        });
+
+        container.appendChild(musicasAleatoriasDiv);
+    } catch (error) {
+        console.error('Erro ao buscar músicas aleatórias:', error);
+        alert('Não foi possível carregar as músicas. Tente novamente mais tarde.');
+    }
+}
+
+
 
 
 
